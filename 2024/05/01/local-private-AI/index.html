@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Your Local Private AI Assist | K.Z.&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="This post details how to deploy your own private local AI assist on your own PC using Ollama and open-webui without inernet connection.- - - An AI assist like this - - - - - - - -&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Your Local Private AI Assist">
+<meta property="og:url" content="https://k-z007.github.io/2024/05/01/local-private-AI/index.html">
+<meta property="og:site_name" content="K.Z.&#39;s Blog">
+<meta property="og:description" content="This post details how to deploy your own private local AI assist on your own PC using Ollama and open-webui without inernet connection.- - - An AI assist like this - - - - - - - -&gt;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://k-z007.github.io/2024/05/01/local-private-AI/thumbnail.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/05/01/local-private-AI/webui.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/05/01/local-private-AI/dockerweb.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/05/01/local-private-AI/dockerimage1.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/05/01/local-private-AI/dockerimage2.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/05/01/local-private-AI/ollama-models-1.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/05/01/local-private-AI/ollama-models.JPG">
+<meta property="article:published_time" content="2024-05-01T08:55:11.000Z">
+<meta property="article:modified_time" content="2024-05-01T09:57:27.018Z">
+<meta property="article:author" content="K.Z.">
+<meta property="article:tag" content="ai">
+<meta property="article:tag" content="ollama">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://k-z007.github.io/2024/05/01/local-private-AI/thumbnail.JPG">
+  
+    <link rel="alternate" href="/atom.xml" title="K.Z.'s Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">K.Z.&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://k-z007.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-local-private-AI" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/01/local-private-AI/" class="article-date">
+  <time class="dt-published" datetime="2024-05-01T08:55:11.000Z" itemprop="datePublished">2024-05-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Your Local Private AI Assist
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>This post details how to deploy your own private <strong>local AI assist</strong> on your own PC using Ollama and open-webui without inernet connection.<br><strong>- - - An AI assist like this - - - - - - - -&gt;</strong></p>
+<p><img src="/2024/05/01/local-private-AI/thumbnail.JPG"></p>
+<span id="more"></span>
+
+<p><strong>- - - Details for each steps - - - - - - - -&gt;</strong></p>
+<p><span class="large-text">1. Go to the offical website in <a target="_blank" rel="noopener" href="https://ollama.com/">Ollama</a> and click “Download” to chose the right version to download according the system of your PC.</span></p>
+<p><span class="large-text">2. Using following Terminal Command to check if you’ve installed successfully, my is windows so I’m using Command Prompt as example. </span></p>
+<ul>
+<li>if it shows a version then you installed successfully.</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;ollama --version</span><br><span class="line"></span><br><span class="line">ollama version <span class="keyword">is</span> <span class="number">0.1</span><span class="number">.32</span></span><br></pre></td></tr></table></figure>
+
+<p><span class="large-text">3. Typing following command to check what kinds of operations you can do with ollama now</span></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;ollama --<span class="built_in">help</span></span><br><span class="line"></span><br><span class="line">Large language model runner</span><br><span class="line"></span><br><span class="line">Usage:</span><br><span class="line">  ollama [flags]</span><br><span class="line">  ollama [command]</span><br><span class="line"></span><br><span class="line">Available Commands:</span><br><span class="line">  serve       Start ollama</span><br><span class="line">  create      Create a model <span class="keyword">from</span> a Modelfile</span><br><span class="line">  show        Show information <span class="keyword">for</span> a model</span><br><span class="line">  run         Run a model</span><br><span class="line">  pull        Pull a model <span class="keyword">from</span> a registry</span><br><span class="line">  push        Push a model to a registry</span><br><span class="line">  <span class="built_in">list</span>        <span class="type">List</span> models</span><br><span class="line">  cp          Copy a model</span><br><span class="line">  rm          Remove a model</span><br><span class="line">  <span class="built_in">help</span>        Help about <span class="built_in">any</span> command</span><br><span class="line"></span><br><span class="line">Flags:</span><br><span class="line">  -h, --<span class="built_in">help</span>      <span class="built_in">help</span> <span class="keyword">for</span> ollama</span><br><span class="line">  -v, --version   Show version information</span><br><span class="line"></span><br><span class="line">Use <span class="string">&quot;ollama [command] --help&quot;</span> <span class="keyword">for</span> more information about a command.</span><br></pre></td></tr></table></figure>
+
+<p><span class="large-text">4. Now you shouldn’t have any LLM (large language model) installed yet.<br>You can check what LLM models you want to download from this link <a target="_blank" rel="noopener" href="https://ollama.com/library">Ollama Models</a>. Thus you can download an example model first by typing following command for instance to download this gemma:2b to your local PC (gemma is latest model series released by Google and 2B means 2 billion parameters, which is lightweight anyway)</span></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;ollama pull gemma:2b</span><br><span class="line"></span><br><span class="line">pulling manifest</span><br><span class="line">pulling c1864a5eb193...  <span class="number">98</span>% ▕███████████████████████████████████████████████████████ ▏ <span class="number">1.6</span> GB/<span class="number">1.7</span> GB   <span class="number">77</span> KB/s   6m19s</span><br></pre></td></tr></table></figure>
+
+<p><span class="large-text">5. Run following code to check if you’ve downloaded successfully<br>I’ve already downloaded a number of models</span></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;ollama <span class="built_in">list</span></span><br><span class="line">NAME                    ID              SIZE    MODIFIED</span><br><span class="line">deepseek-coder:<span class="number">6.7</span>b     ce298d984115    <span class="number">3.8</span> GB  <span class="number">10</span> days ago</span><br><span class="line">gemma:2b                b50d6c999e59    <span class="number">1.7</span> GB  <span class="number">33</span> minutes ago</span><br><span class="line">gemma:7b                a72c7f4d0a15    <span class="number">5.0</span> GB  <span class="number">11</span> days ago</span><br><span class="line">llama3:8b               71a106a91016    <span class="number">4.7</span> GB  <span class="number">10</span> days ago</span><br><span class="line">openchat:7b             537a4e03b649    <span class="number">4.1</span> GB  <span class="number">10</span> days ago</span><br></pre></td></tr></table></figure>
+
+<p><span class="large-text">6. In the terminal window you can use <strong>“ollama run gemma:2b”</strong> command to start using this model.</span></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;ollama run gemma:2b</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Hi, please introduce yourself.</span><br><span class="line">Hello! My name <span class="keyword">is</span> AI, <span class="keyword">and</span> I<span class="string">&#x27;m a large language model trained by Google. I&#x27;</span>m designed to be informative <span class="keyword">and</span></span><br><span class="line">helpful, <span class="keyword">and</span> I<span class="string">&#x27;m always happy to assist with your queries.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">How can I help you today?</span></span><br><span class="line"><span class="string">&gt;&gt;&gt; Send a message (/? for help)</span></span><br></pre></td></tr></table></figure>
+
+<p><span class="large-text">7. However I believe you wouldn’t like to using Terminal window to chat with AI, thus we shuold use somthing like this, which is called <a target="_blank" rel="noopener" href="https://github.com/open-webui/open-webui">open-webui</a><br></span></p>
+<p><img src="/2024/05/01/local-private-AI/webui.JPG"></p>
+<p><span class="large-text">8. Click the link of <a target="_blank" rel="noopener" href="https://github.com/open-webui/open-webui">open-webui</a> for installation guide, however you need to use Docker to install, pls using this linke to install Docker first <a target="_blank" rel="noopener" href="https://www.docker.com/products/docker-desktop/">Docker</a>. There are tons of online tutorial to install docker, pls check youtube<br></span></p>
+<p><img src="/2024/05/01/local-private-AI/dockerweb.JPG"></p>
+<p><span class="large-text">9. Once installed docker you can use following command to install this “open-webui” docker image</span></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p <span class="number">3000</span>:<span class="number">8080</span> --add-host=host.docker.internal:host-gateway -v <span class="built_in">open</span>-webui:/app/backend/data --name <span class="built_in">open</span>-webui --restart always ghcr.io/<span class="built_in">open</span>-webui/<span class="built_in">open</span>-webui:main</span><br></pre></td></tr></table></figure>
+
+
+<p><span class="large-text">10. Then open the docker desktop to check you’ve already installed open-webui</span></p>
+<p><img src="/2024/05/01/local-private-AI/dockerimage1.JPG"></p>
+<p><span class="large-text">11. Open your web browser to this address <a target="_blank" rel="noopener" href="http://localhost:3000/">http://localhost:3000/</a>, then you are in your own private chat</span><br>    - Click following red area to change to another LLM model if like.</p>
+<p><img src="/2024/05/01/local-private-AI/dockerimage2.JPG"></p>
+<p><span class="large-text">12. One imporant note for windows user if you want to download the models to another drive rather than C: Drive because Ollama defaults to download to C:</span></p>
+<ul>
+<li>You need to create new system variable in the “Environment Variables”.</li>
+</ul>
+<p><img src="/2024/05/01/local-private-AI/ollama-models-1.JPG"></p>
+<ul>
+<li>Add new variable with following name and path you want to store the models to and exit Ollama then restart Ollama server.</li>
+</ul>
+<p><img src="/2024/05/01/local-private-AI/ollama-models.JPG"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://k-z007.github.io/2024/05/01/local-private-AI/" data-id="clvnnb5ft000310jf76kz40vw" data-title="Your Local Private AI Assist" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ai/" rel="tag">ai</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ollama/" rel="tag">ollama</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/04/21/data-analysis-ivv/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Time Series Analysis For IVV.US</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ai/" rel="tag">ai</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ollama/" rel="tag">ollama</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ai/" style="font-size: 10px;">ai</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/data-analysis/" style="font-size: 20px;">data_analysis</a> <a href="/tags/ollama/" style="font-size: 10px;">ollama</a> <a href="/tags/pandas/" style="font-size: 15px;">pandas</a> <a href="/tags/python/" style="font-size: 10px;">python</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/05/01/local-private-AI/">Your Local Private AI Assist</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/21/data-analysis-ivv/">Time Series Analysis For IVV.US</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/18/minconda-condavenv/">Miniconda and Conda Virtual Environment</a>
+          </li>
+        
+          <li>
+            <a href="/2023/06/03/panda-useful-notes-p1/">Data Analysis Note - Pandas Part 1</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 K.Z.<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
