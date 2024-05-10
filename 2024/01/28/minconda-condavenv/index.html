@@ -9,21 +9,21 @@
   <meta name="description" content="This post covers miniconda, including its installation and managing conda virtual environments. After using the Anaconda suite for quite some time, I found it cumbersome, with many unused tools, a lar">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Miniconda and Conda Virtual Environment">
-<meta property="og:url" content="https://k-z007.github.io/2024/02/18/minconda-condavenv/index.html">
+<meta property="og:url" content="https://k-z007.github.io/2024/01/28/minconda-condavenv/index.html">
 <meta property="og:site_name" content="K.Z.&#39;s Blog">
 <meta property="og:description" content="This post covers miniconda, including its installation and managing conda virtual environments. After using the Anaconda suite for quite some time, I found it cumbersome, with many unused tools, a lar">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://k-z007.github.io/2024/02/18/minconda-condavenv/conda_1.JPG">
-<meta property="og:image" content="https://k-z007.github.io/2024/02/18/minconda-condavenv/conda_2.JPG">
-<meta property="og:image" content="https://k-z007.github.io/2024/02/18/minconda-condavenv/conda_3.JPG">
-<meta property="og:image" content="https://k-z007.github.io/2024/02/18/minconda-condavenv/conda_4.JPG">
-<meta property="article:published_time" content="2024-02-18T03:01:08.000Z">
-<meta property="article:modified_time" content="2024-04-30T10:37:49.138Z">
+<meta property="og:image" content="https://k-z007.github.io/2024/01/28/minconda-condavenv/conda_1.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/01/28/minconda-condavenv/conda_2.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/01/28/minconda-condavenv/conda_3.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/01/28/minconda-condavenv/conda_4.JPG">
+<meta property="article:published_time" content="2024-01-28T03:01:08.000Z">
+<meta property="article:modified_time" content="2024-05-10T04:23:41.102Z">
 <meta property="article:author" content="K.Z.">
 <meta property="article:tag" content="data_analysis">
 <meta property="article:tag" content="conda">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://k-z007.github.io/2024/02/18/minconda-condavenv/conda_1.JPG">
+<meta name="twitter:image" content="https://k-z007.github.io/2024/01/28/minconda-condavenv/conda_1.JPG">
   
     <link rel="alternate" href="/atom.xml" title="K.Z.'s Blog" type="application/atom+xml">
   
@@ -82,8 +82,8 @@
       <div class="outer">
         <section id="main"><article id="post-minconda-condavenv" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2024/02/18/minconda-condavenv/" class="article-date">
-  <time class="dt-published" datetime="2024-02-18T03:01:08.000Z" itemprop="datePublished">2024-02-18</time>
+    <a href="/2024/01/28/minconda-condavenv/" class="article-date">
+  <time class="dt-published" datetime="2024-01-28T03:01:08.000Z" itemprop="datePublished">2024-01-28</time>
 </a>
     
   </div>
@@ -108,28 +108,28 @@
 
 
 <p><span class="large-text">1. Open Anaconda Terminal</span><br><span class="large-text">2. Create new virtual environment and install specific python verison<br>into this virtual environment</span></p>
-<p><img src="/2024/02/18/minconda-condavenv/conda_1.JPG"></p>
+<p><img src="/2024/01/28/minconda-condavenv/conda_1.JPG"></p>
 <p><span class="large-text">3. Typing “conda env list” to check the virtual environments just created</span></p>
-<p><img src="/2024/02/18/minconda-condavenv/conda_2.JPG"></p>
+<p><img src="/2024/01/28/minconda-condavenv/conda_2.JPG"></p>
 <span id="more"></span>
 <p><span class="large-text">4. Switch or Activate the virtual environment just create</span></p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; conda activate myNewVitrualEnv</span><br></pre></td></tr></table></figure>
 
 <p>Then you will see the front in () changed to your just created virtual environment name</p>
-<p><img src="/2024/02/18/minconda-condavenv/conda_3.JPG"></p>
+<p><img src="/2024/01/28/minconda-condavenv/conda_3.JPG"></p>
 <p><span class="large-text">5. Then install the package you needed to work in the project</span></p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; conda install jupyter pandas numpy</span><br></pre></td></tr></table></figure>
 
 <p><span class="large-text">6. Then cd into any folder you want project to be placed at To launch Jupyter Notebook</span></p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; (myNewVitrualEnv) D:\Dataproject\financial_data_proj&gt;jupyter notebook</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2024/02/18/minconda-condavenv/conda_4.JPG"></p>
+<p><img src="/2024/01/28/minconda-condavenv/conda_4.JPG"></p>
 <p><span class="large-text">7. To remove a virtual environment:</span></p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; (base) conda remove --name myNewVitrualEnv --<span class="built_in">all</span></span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/02/18/minconda-condavenv/" data-id="clvwagd3t0003cgjfaoaghhgy" data-title="Miniconda and Conda Virtual Environment" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/01/28/minconda-condavenv/" data-id="clw0conv800066ojff8cx0k7e" data-title="Miniconda and Conda Virtual Environment" class="article-share-link">Share</a>
       
       
       
@@ -141,11 +141,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2024/04/21/data-analysis-ivv/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2024/02/18/springboot-jpa-jdbc/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Time Series Analysis For IVV.US
+          Spring Framework - JPA, Hibernate and JDBC
         
       </div>
     </a>
@@ -173,7 +173,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ai/" rel="tag">ai</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ollama/" rel="tag">ollama</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ai/" rel="tag">ai</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpa/" rel="tag">jpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ollama/" rel="tag">ollama</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
     </div>
   </div>
 
@@ -183,7 +183,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ai/" style="font-size: 10px;">ai</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/data-analysis/" style="font-size: 20px;">data_analysis</a> <a href="/tags/ollama/" style="font-size: 10px;">ollama</a> <a href="/tags/pandas/" style="font-size: 16.67px;">pandas</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a>
+      <a href="/tags/ai/" style="font-size: 10px;">ai</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/data-analysis/" style="font-size: 20px;">data_analysis</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/ollama/" style="font-size: 10px;">ollama</a> <a href="/tags/pandas/" style="font-size: 16.67px;">pandas</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a>
     </div>
   </div>
 
@@ -192,7 +192,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li></ul>
     </div>
   </div>
 
@@ -213,15 +213,15 @@
           </li>
         
           <li>
-            <a href="/2024/02/18/minconda-condavenv/">Miniconda and Conda Virtual Environment</a>
+            <a href="/2024/02/18/springboot-jpa-jdbc/">Spring Framework - JPA, Hibernate and JDBC</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/28/minconda-condavenv/">Miniconda and Conda Virtual Environment</a>
           </li>
         
           <li>
             <a href="/2023/08/13/pandas-useful-notes-advanced/">Data Analysis Note - Pandas Part 3</a>
-          </li>
-        
-          <li>
-            <a href="/2023/07/16/pandas-useful-notes-p2/">Data Analysis Note - Pandas Part 2 - Series</a>
           </li>
         
       </ul>
