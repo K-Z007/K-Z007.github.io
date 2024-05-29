@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Data Analysis Note - Pandas Part 4 - Join Tables | K.Z.&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="The most commonly used methods for working with multiple tables   1. Concating series and dataframes: 123456789101112131415161718@concat# concat both columns into 1 column (1 series)pd.concat([column1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data Analysis Note - Pandas Part 4 - Join Tables">
+<meta property="og:url" content="https://k-z007.github.io/2023/10/15/pandas-useful-notes-p3/index.html">
+<meta property="og:site_name" content="K.Z.&#39;s Blog">
+<meta property="og:description" content="The most commonly used methods for working with multiple tables   1. Concating series and dataframes: 123456789101112131415161718@concat# concat both columns into 1 column (1 series)pd.concat([column1">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-15T09:00:08.000Z">
+<meta property="article:modified_time" content="2024-05-29T08:31:59.667Z">
+<meta property="article:author" content="K.Z.">
+<meta property="article:tag" content="data_analysis">
+<meta property="article:tag" content="pandas">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="K.Z.'s Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">K.Z.&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://k-z007.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-pandas-useful-notes-p3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/10/15/pandas-useful-notes-p3/" class="article-date">
+  <time class="dt-published" datetime="2023-10-15T09:00:08.000Z" itemprop="datePublished">2023-10-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Data Analysis Note - Pandas Part 4 - Join Tables
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3>The most commonly used methods for working with multiple tables</h3>
+
+
+<p><strong>1. Concating series and dataframes:</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@concat</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># concat both columns into 1 column (1 series)</span></span><br><span class="line">pd.concat([column1, column2])   </span><br><span class="line"></span><br><span class="line"><span class="comment"># concat the column by column (series) to form a dataframe and using same index to match each row by row.</span></span><br><span class="line">pd.concat([column1, column2], axis=<span class="number">1</span>)     <span class="comment"># axis=1 default is 0;</span></span><br><span class="line"></span><br><span class="line">pd.concat([df,df2], ignore_index=<span class="literal">True</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment"># If two dfs have different columns, then using join=&#x27;inner&#x27; would only join their mutual columns;</span></span><br><span class="line">pd.concat([df1, df2], sort=<span class="literal">True</span>, ignore_index=<span class="literal">True</span>,  join=<span class="string">&#x27;inner&#x27;</span>,)   <span class="comment"># sort=True is to order the column names</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Keys and then original indexes of the df would togeter create a multi-index dataframe;</span></span><br><span class="line">pd.concat([df1, df2], sort=<span class="literal">True</span>, join=<span class="string">&#x27;inner&#x27;</span>, keys=[<span class="string">&#x27;df1&#x27;</span>, <span class="string">&#x27;df2&#x27;</span>]) <span class="comment"># Using keys to give a first level of index</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>2. Merging dataframes &#x2F; tables on left, right, inner, outer joining methods:</strong></p>
+<span id="more"></span>
+
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># Outer join:</span></span><br><span class="line">store_a_b_outer = pd.merge(store_a,store_b, how=<span class="string">&quot;outer&quot;</span>) <span class="comment"># default merger method is &#x27;inner&#x27;</span></span><br><span class="line"><span class="comment"># Left Join</span></span><br><span class="line">store_a_b_left = pd.merge(store_a, store_b, how=<span class="string">&quot;left&quot;</span>)</span><br><span class="line"><span class="comment"># Right Join</span></span><br><span class="line">store_b_a_left = pd.merge(store_a, store_b, how=<span class="string">&quot;right&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># To join two table with same multi-index:</span></span><br><span class="line">new_df = pd.merge(df1, df2, left_index=<span class="literal">True</span>, right_index=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Join based on multiple columns:</span></span><br><span class="line">merged_df = pd.merge(country_df, economies_df, left_on = [<span class="string">&#x27;code&#x27;</span>, <span class="string">&#x27;year&#x27;</span>], right_on = [<span class="string">&#x27;code&#x27;</span>, <span class="string">&#x27;year&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># chain merge</span></span><br><span class="line">all_data = sales.merge(targets).merge(men_women)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Inner join:</span></span><br><span class="line"><span class="comment"># when two differnt table both have &quot;id&quot; column with differt table means:</span></span><br><span class="line"><span class="comment"># First way to do:</span></span><br><span class="line">pd.merge(orders, products.rename(columns=&#123;<span class="string">&quot;id&quot;</span>:<span class="string">&quot;product_id&quot;</span>&#125;))</span><br><span class="line"><span class="comment"># Second way to do:</span></span><br><span class="line">pd.merge(orders, products, left_on=<span class="string">&quot;product_id&quot;</span>, right_on = <span class="string">&quot;id&quot;</span>, suffixes=[<span class="string">&quot;_order&quot;</span>, <span class="string">&quot;_product&quot;</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Cross join</span></span><br><span class="line"><span class="comment"># Cross join: needs to create same column to each df. then join on the same new column, key column in this case:</span></span><br><span class="line">cities[<span class="string">&#x27;key&#x27;</span>] = <span class="number">1</span></span><br><span class="line">languages[<span class="string">&#x27;key&#x27;</span>] = <span class="number">1</span></span><br><span class="line">city_lang = pd.merge(cities, languages, on=<span class="string">&#x27;key&#x27;</span>, how=<span class="string">&#x27;outer&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Intersect between two df: using isin():</span></span><br><span class="line">cities.loc[cities.name.isin(countries.country_name), <span class="string">&#x27;name&#x27;</span>]</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://k-z007.github.io/2023/10/15/pandas-useful-notes-p3/" data-id="clwrklmwe0010zkjf2hfe2gfq" data-title="Data Analysis Note - Pandas Part 4 - Join Tables" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/01/28/minconda-condavenv/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Miniconda and Conda Virtual Environment
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/08/13/pandas-useful-notes-advanced/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Data Analysis Note - Pandas Part 3 - Groupby</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ai/" rel="tag">ai</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpa/" rel="tag">jpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matplotlib/" rel="tag">matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ollama/" rel="tag">ollama</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plot/" rel="tag">plot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ai/" style="font-size: 10px;">ai</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/data-analysis/" style="font-size: 20px;">data_analysis</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/ollama/" style="font-size: 10px;">ollama</a> <a href="/tags/pandas/" style="font-size: 16.67px;">pandas</a> <a href="/tags/plot/" style="font-size: 10px;">plot</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/05/01/local-private-AI/">Your Local Private AI Assist</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/21/data-analysis-ivv/">Time Series Analysis For IVV.US</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/18/springboot-jpa-jdbc/">Spring Framework - JPA, Hibernate and JDBC</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/28/minconda-condavenv/">Miniconda and Conda Virtual Environment</a>
+          </li>
+        
+          <li>
+            <a href="/2023/10/15/pandas-useful-notes-p3/">Data Analysis Note - Pandas Part 4 - Join Tables</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 K.Z.<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

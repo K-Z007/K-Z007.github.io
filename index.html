@@ -104,7 +104,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/05/01/local-private-AI/" data-id="clw0conv400036ojf9wqp4rid" data-title="Your Local Private AI Assist" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/05/01/local-private-AI/" data-id="clwrklmw60008zkjf2ooz2s9b" data-title="Your Local Private AI Assist" class="article-share-link">Share</a>
       
       
       
@@ -141,9 +141,7 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <p>I present to you a comprehensive Time Series Analysis of the historical prices of the iShares Core S&amp;P 500 ETF, identified by the stock ticker IVV.US, spanning an extensive period of 24 years since the year 2000. Should you wish to delve into this project, kindly refer to the link <a target="_blank" rel="noopener" href="https://github.com/K-Z007/time-series-analysis">GitHub</a>.</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">$ df = pd.read_csv(<span class="string">r&quot;.\financial_data\IVV_US.csv&quot;</span>)</span><br><span class="line">......</span><br><span class="line"></span><br><span class="line">plt.style.use(<span class="string">&quot;ggplot&quot;</span>)</span><br><span class="line">num_labels = <span class="number">25</span>  <span class="comment"># Adjust this value to control the number of labels</span></span><br><span class="line">num_of_years = np.unique(newDf.index.year)</span><br><span class="line"></span><br><span class="line">fig, ax=plt.subplots(<span class="built_in">len</span>(num_of_years), <span class="number">1</span>, figsize=(<span class="number">20</span>, <span class="number">100</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(num_of_years)):</span><br><span class="line">    year = <span class="built_in">str</span>(num_of_years[i])</span><br><span class="line">    x_axis= np.arange(<span class="built_in">len</span>(newDf.loc[year].index))</span><br><span class="line">    label_indices = np.linspace(<span class="number">0</span>, <span class="built_in">len</span>(x_axis)-<span class="number">1</span>, num_labels, dtype=<span class="built_in">int</span>)</span><br><span class="line">    </span><br><span class="line">    random_color = <span class="string">&quot;#&quot;</span> + <span class="string">&#x27;&#x27;</span>.join([random.choice(<span class="string">&#x27;0123456789&#x27;</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">6</span>)])</span><br><span class="line">    ax[i].plot(newDf.loc[year].index.strftime(<span class="string">&#x27;%m-%d&#x27;</span>), newDf.loc[year].Close, color=random_color, label= year)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Find the lowest point</span></span><br><span class="line">    min_close = newDf.loc[year].Close.<span class="built_in">min</span>()</span><br><span class="line">    min_date = newDf.loc[year][newDf.loc[year].Close == min_close].index.strftime(<span class="string">&#x27;%m-%d&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Add a vertical line at the lowest point</span></span><br><span class="line">    ax[i].axvline(x=min_date, color=random_color, linestyle=<span class="string">&#x27;--&#x27;</span>)</span><br><span class="line">    ax[i].set_xticks(x_axis[label_indices])</span><br><span class="line">    ax[i].set_xticklabels([newDf.loc[year].index.strftime(<span class="string">&#x27;%d-%m&#x27;</span>)[i] <span class="keyword">for</span> i <span class="keyword">in</span> label_indices], rotation=<span class="number">60</span>)</span><br><span class="line">    ax[i].set_title(year + <span class="string">&#x27; Close Prices for IVV.US&#x27;</span>, color=random_color)  <span class="comment"># Add subtitle for the first chart</span></span><br><span class="line"></span><br><span class="line">plt.subplots_adjust(hspace=<span class="number">0.5</span>)  <span class="comment"># Increase the spacing between the subplots</span></span><br><span class="line"><span class="comment">#plt.savefig(&#x27;my_plot.png&#x27;)</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2024/04/21/data-analysis-ivv/ivv-1.jpg"></p>
+<p><img src="/2024/04/21/data-analysis-ivv/ivv-1.jpg"><br><img src="/2024/04/21/data-analysis-ivv/ivv-2.jpg"></p>
         
           <p class="article-more-link">
             <a href="/2024/04/21/data-analysis-ivv/#more">Read More</a>
@@ -152,7 +150,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/04/21/data-analysis-ivv/" data-id="clw0conv100016ojfde661xiy" data-title="Time Series Analysis For IVV.US" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/04/21/data-analysis-ivv/" data-id="clwrklmvz0001zkjf4y989ksi" data-title="Time Series Analysis For IVV.US" class="article-share-link">Share</a>
       
       
       
@@ -199,7 +197,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/02/18/springboot-jpa-jdbc/" data-id="clw0convk000v6ojffgq9fjch" data-title="Spring Framework - JPA, Hibernate and JDBC" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/02/18/springboot-jpa-jdbc/" data-id="clwrklmwf0012zkjf8rsdefof" data-title="Spring Framework - JPA, Hibernate and JDBC" class="article-share-link">Share</a>
       
       
       
@@ -252,11 +250,62 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/01/28/minconda-condavenv/" data-id="clw0conv800066ojff8cx0k7e" data-title="Miniconda and Conda Virtual Environment" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/01/28/minconda-condavenv/" data-id="clwrklmw40006zkjfc9zz4u6r" data-title="Miniconda and Conda Virtual Environment" class="article-share-link">Share</a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/conda/" rel="tag">conda</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-pandas-useful-notes-p3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/10/15/pandas-useful-notes-p3/" class="article-date">
+  <time class="dt-published" datetime="2023-10-15T09:00:08.000Z" itemprop="datePublished">2023-10-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/10/15/pandas-useful-notes-p3/">Data Analysis Note - Pandas Part 4 - Join Tables</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3>The most commonly used methods for working with multiple tables</h3>
+
+
+<p><strong>1. Concating series and dataframes:</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@concat</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># concat both columns into 1 column (1 series)</span></span><br><span class="line">pd.concat([column1, column2])   </span><br><span class="line"></span><br><span class="line"><span class="comment"># concat the column by column (series) to form a dataframe and using same index to match each row by row.</span></span><br><span class="line">pd.concat([column1, column2], axis=<span class="number">1</span>)     <span class="comment"># axis=1 default is 0;</span></span><br><span class="line"></span><br><span class="line">pd.concat([df,df2], ignore_index=<span class="literal">True</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment"># If two dfs have different columns, then using join=&#x27;inner&#x27; would only join their mutual columns;</span></span><br><span class="line">pd.concat([df1, df2], sort=<span class="literal">True</span>, ignore_index=<span class="literal">True</span>,  join=<span class="string">&#x27;inner&#x27;</span>,)   <span class="comment"># sort=True is to order the column names</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Keys and then original indexes of the df would togeter create a multi-index dataframe;</span></span><br><span class="line">pd.concat([df1, df2], sort=<span class="literal">True</span>, join=<span class="string">&#x27;inner&#x27;</span>, keys=[<span class="string">&#x27;df1&#x27;</span>, <span class="string">&#x27;df2&#x27;</span>]) <span class="comment"># Using keys to give a first level of index</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>2. Merging dataframes &#x2F; tables on left, right, inner, outer joining methods:</strong></p>
+        
+          <p class="article-more-link">
+            <a href="/2023/10/15/pandas-useful-notes-p3/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://k-z007.github.io/2023/10/15/pandas-useful-notes-p3/" data-id="clwrklmwe0010zkjf2hfe2gfq" data-title="Data Analysis Note - Pandas Part 4 - Join Tables" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li></ul>
 
     </footer>
   </div>
@@ -280,7 +329,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/08/13/pandas-useful-notes-advanced/">Data Analysis Note - Pandas Part 3</a>
+      <a class="p-name article-title" href="/2023/08/13/pandas-useful-notes-advanced/">Data Analysis Note - Pandas Part 3 - Groupby</a>
     </h1>
   
 
@@ -290,9 +339,9 @@
       
         <p>This post covers useful notes for using pandas (the famous package for Python for data analysis). This post are more advanced topics such as group dataframe, group data with custom python functions and join dataframe etc. </p>
 <p><strong>1. Groupby dataframe :</strong></p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#This is a best way to find if this column has any null values or not:</span></span><br><span class="line"><span class="comment">#It is good practice to check if a column has null before groupby:</span></span><br><span class="line">df.name.isnull().<span class="built_in">any</span>()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">grades = df.groupby(<span class="string">&#x27;student&#x27;</span>).grade.mean()</span><br><span class="line">grades = df.groupby(<span class="string">&#x27;student&#x27;</span>, as_index=<span class="literal">False</span>).grade.mean() <span class="comment"># as_index=False means -- Do not set the &#x27;student&#x27; column as index;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#column1 is the column that we want to group by (&#x27;student&#x27; in our example)</span></span><br><span class="line"><span class="comment">#column2 is the column that we want to perform a measurement on (grade in our example)</span></span><br><span class="line"><span class="comment">#measurement is the measurement function we want to apply (mean in our example)</span></span><br><span class="line">df.groupby(<span class="string">&#x27;column1&#x27;</span>).column2.measurement()</span><br><span class="line">pricey_shoes = orders.groupby(<span class="string">&quot;shoe_type&quot;</span>).price.<span class="built_in">max</span>()  <span class="comment"># type is &lt;class &#x27;pandas.core.series.Series&#x27;&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># using reset_index() function to reset the index and convert to a DataFrame (books dataframe),</span></span><br><span class="line"><span class="comment"># withou reset_index() it will be a series</span></span><br><span class="line">df = books.groupby(<span class="string">&#x27;Genre&#x27;</span>)[<span class="string">&#x27;Price&#x27;</span>].<span class="built_in">max</span>().reset_index()</span><br><span class="line">df &gt;&gt; </span><br><span class="line">       Genre	    Price</span><br><span class="line">    <span class="number">0</span>	Fiction	    <span class="number">82</span></span><br><span class="line">    <span class="number">1</span>	Non Fiction	<span class="number">105</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># rename the column &#x27;Price&#x27; to &quot;Max_price&quot;</span></span><br><span class="line">output.rename(columns = &#123;<span class="string">&quot;Price&quot;</span>: <span class="string">&quot;Max_price&quot;</span>&#125;,  inplace = <span class="literal">True</span>) </span><br><span class="line"></span><br><span class="line">df &gt;&gt; </span><br><span class="line">     	    Genre	    Max_price</span><br><span class="line">        <span class="number">0</span>	Fiction	    <span class="number">82</span></span><br><span class="line">        <span class="number">1</span>	Non Fiction	<span class="number">105</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Following command groups the books by year, calculates the number of authors and the max and average prices for each year, renames the columns, and sorts the results. The output is a sorted DataFrame where each row corresponds to a unique year and the columns are the calculated values.</span></span><br><span class="line"><span class="meta">@sort_values()</span></span><br><span class="line"> books.fillna(<span class="number">0</span>).groupby(<span class="string">&#x27;Year&#x27;</span>).agg(&#123;<span class="string">&#x27;Author&#x27;</span>:<span class="string">&#x27;count&#x27;</span>, <span class="string">&#x27;Price&#x27;</span>:[<span class="string">&#x27;max&#x27;</span>, <span class="string">&#x27;mean&#x27;</span>]&#125;)\</span><br><span class="line">            .rename(columns=&#123;<span class="string">&quot;count&quot;</span>:<span class="string">&#x27;num_of_authers&#x27;</span>, <span class="string">&quot;sum&quot;</span>:<span class="string">&#x27;max_price&#x27;</span>,<span class="string">&quot;mean&quot;</span>:<span class="string">&#x27;avg_price&#x27;</span>&#125;)\</span><br><span class="line">           .sort_values(by=[(<span class="string">&#x27;Author&#x27;</span>, <span class="string">&#x27;num_of_authers&#x27;</span>), (<span class="string">&#x27;Price&#x27;</span>, <span class="string">&#x27;avg_price&#x27;</span>)], ascending=[<span class="literal">False</span>, <span class="literal">True</span>])</span><br><span class="line">&gt;&gt; result -&gt; </span><br><span class="line">            Author	            Price</span><br><span class="line">         num_of_authers  max_price	avg_price</span><br><span class="line">    Year			</span><br><span class="line">    <span class="number">2019</span>	<span class="number">50</span>	            <span class="number">27</span>	        <span class="number">10.08</span></span><br><span class="line">    <span class="number">2015</span>	<span class="number">50</span>	            <span class="number">46</span>	        <span class="number">10.42</span></span><br><span class="line">    <span class="number">2018</span>	<span class="number">50</span>	            <span class="number">46</span>	        <span class="number">10.52</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># for instance, in 2019 there are 50 authers who publsih books recorded in this dataset and the max price (higest price of book sold in that year is) $27 and average price of that year is $10.08 </span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#This is a best way to find if this column has any null values or not:</span></span><br><span class="line"><span class="comment">#It is good practice to check if a column has null before groupby:</span></span><br><span class="line">df.name.isnull().<span class="built_in">any</span>()</span><br><span class="line"></span><br><span class="line">movies_gb_rating = movies.groupby(<span class="string">&#x27;rating&#x27;</span>)</span><br><span class="line"></span><br><span class="line">movies_gb_rating.ngroups <span class="comment"># return the number of groups totally</span></span><br><span class="line"></span><br><span class="line">movies_gb_rating.groups  </span><br><span class="line"><span class="comment"># return a python dictionary with key and value (key is the group name and value is a list of contained rows&#x27; indexes)</span></span><br><span class="line"></span><br><span class="line">&gt;&gt; results -&gt;</span><br><span class="line"><span class="string">&#x27;G&#x27;</span>: [<span class="number">107</span>, <span class="number">933</span>, <span class="number">1126</span>, <span class="number">1557</span>, <span class="number">2911</span>, <span class="number">3059</span>, ], <span class="string">&#x27;NC-17&#x27;</span>: [<span class="number">5264</span>, <span class="number">6338</span>, <span class="number">7263</span>], <span class="string">&#x27;NR&#x27;</span>: [<span class="number">5971</span>, <span class="number">5987</span>, <span class="number">6015</span>, <span class="number">6054</span>, <span class="number">6087</span>, <span class="number">6093</span>, <span class="number">6095</span>, <span class="number">6179</span>, <span class="number">6190</span>, <span class="number">6207</span>, <span class="number">6208</span>, <span class="number">6226</span>], <span class="string">&#x27;PG&#x27;</span>: [<span class="number">6</span>, <span class="number">41</span>, <span class="number">42</span>, <span class="number">43</span>, <span class="number">45</span>, <span class="number">94</span>, <span class="number">115</span>, <span class="number">127</span>, <span class="number">137</span>, <span class="number">155</span>, <span class="number">156</span>, <span class="number">167</span>, <span class="number">168</span>, <span class="number">231</span>, <span class="number">300</span>, <span class="number">325</span>, <span class="number">326</span>, <span class="number">330</span>, <span class="number">344</span>, <span class="number">345</span>, <span class="number">347</span>, <span class="number">393</span>, ...], <span class="string">&#x27;PG-13&#x27;</span>: [<span class="number">0</span>, <span class="number">9</span>, <span class="number">27</span>, <span class="number">28</span>, <span class="number">29</span>, <span class="number">38</span>, <span class="number">44</span>, <span class="number">88</span>, <span class="number">112</span>, <span class="number">117</span>, <span class="number">128</span>, <span class="number">129</span>, <span class="number">134</span>, <span class="number">138</span>, <span class="number">142</span>, , ...], </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">movies_gb_rating.first()   <span class="comment"># get the first result from all groups into a dataframe:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># get all results (a dataframe) that belongs to this specific group;</span></span><br><span class="line">movies_gb_rating.get_group(<span class="string">&#x27;G&#x27;</span>)     <span class="comment"># this is similar to filter the result by rating == &#x27;G&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># iterate through all groups and print the group name and results </span></span><br><span class="line"><span class="keyword">for</span> name, group <span class="keyword">in</span> movies_gb_rating:</span><br><span class="line">    <span class="built_in">print</span>(name)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;--------&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(group)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">grouped_df = df.groupby(<span class="string">&#x27;student&#x27;</span>).grade.mean()</span><br><span class="line">grouped_df = df.groupby(<span class="string">&#x27;student&#x27;</span>, as_index=<span class="literal">False</span>).grade.mean() <span class="comment"># as_index=False means -- Do not set the &#x27;student&#x27; column as index;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#column1 is the column that we want to group by (&#x27;student&#x27; in our example)</span></span><br><span class="line"><span class="comment">#column2 is the column that we want to perform a measurement on (grade in our example)</span></span><br><span class="line"><span class="comment">#measurement is the measurement function we want to apply (mean in our example)</span></span><br><span class="line">df.groupby(<span class="string">&#x27;column1&#x27;</span>).column2.measurement()</span><br><span class="line">pricey_shoes = orders.groupby(<span class="string">&quot;shoe_type&quot;</span>).price.<span class="built_in">max</span>()  <span class="comment"># type is &lt;class &#x27;pandas.core.series.Series&#x27;&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># using reset_index() function to reset the index and convert to a DataFrame (books dataframe),</span></span><br><span class="line"><span class="comment"># withou reset_index() it will be a series</span></span><br><span class="line">df = books.groupby(<span class="string">&#x27;Genre&#x27;</span>)[<span class="string">&#x27;Price&#x27;</span>].<span class="built_in">max</span>().reset_index()</span><br><span class="line">df &gt;&gt; </span><br><span class="line">       Genre	    Price</span><br><span class="line">    <span class="number">0</span>	Fiction	    <span class="number">82</span></span><br><span class="line">    <span class="number">1</span>	Non Fiction	<span class="number">105</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># rename the column &#x27;Price&#x27; to &quot;Max_price&quot;</span></span><br><span class="line">output.rename(columns = &#123;<span class="string">&quot;Price&quot;</span>: <span class="string">&quot;Max_price&quot;</span>&#125;,  inplace = <span class="literal">True</span>) </span><br><span class="line"></span><br><span class="line">df &gt;&gt; </span><br><span class="line">     	    Genre	    Max_price</span><br><span class="line">        <span class="number">0</span>	Fiction	    <span class="number">82</span></span><br><span class="line">        <span class="number">1</span>	Non Fiction	<span class="number">105</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Following command groups the books by year, calculates the number of authors and the max and average prices for each year, renames the columns, and sorts the results. The output is a sorted DataFrame where each row corresponds to a unique year and the columns are the calculated values.</span></span><br><span class="line"><span class="meta">@sort_values()</span></span><br><span class="line"> books.fillna(<span class="number">0</span>).groupby(<span class="string">&#x27;Year&#x27;</span>).agg(&#123;<span class="string">&#x27;Author&#x27;</span>:<span class="string">&#x27;count&#x27;</span>, <span class="string">&#x27;Price&#x27;</span>:[<span class="string">&#x27;max&#x27;</span>, <span class="string">&#x27;mean&#x27;</span>]&#125;)\</span><br><span class="line">            .rename(columns=&#123;<span class="string">&quot;count&quot;</span>:<span class="string">&#x27;num_of_authers&#x27;</span>, <span class="string">&quot;sum&quot;</span>:<span class="string">&#x27;max_price&#x27;</span>,<span class="string">&quot;mean&quot;</span>:<span class="string">&#x27;avg_price&#x27;</span>&#125;)\</span><br><span class="line">           .sort_values(by=[(<span class="string">&#x27;Author&#x27;</span>, <span class="string">&#x27;num_of_authers&#x27;</span>), (<span class="string">&#x27;Price&#x27;</span>, <span class="string">&#x27;avg_price&#x27;</span>)], ascending=[<span class="literal">False</span>, <span class="literal">True</span>])</span><br><span class="line">&gt;&gt; result -&gt; </span><br><span class="line">            Author	            Price</span><br><span class="line">         num_of_authers  max_price	avg_price</span><br><span class="line">    Year			</span><br><span class="line">    <span class="number">2019</span>	<span class="number">50</span>	            <span class="number">27</span>	        <span class="number">10.08</span></span><br><span class="line">    <span class="number">2015</span>	<span class="number">50</span>	            <span class="number">46</span>	        <span class="number">10.42</span></span><br><span class="line">    <span class="number">2018</span>	<span class="number">50</span>	            <span class="number">46</span>	        <span class="number">10.52</span></span><br><span class="line">    </span><br><span class="line"><span class="comment"># for instance, in 2019 there are 50 authers who publsih books recorded in this dataset and the max price (higest price of book sold in that year is) $27 and average price of that year is $10.08 </span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><strong>2. Group data advanced usage:</strong></p>
+<p><strong>2. Group data practical usage: agg function</strong></p>
         
           <p class="article-more-link">
             <a href="/2023/08/13/pandas-useful-notes-advanced/#more">Read More</a>
@@ -301,11 +350,63 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2023/08/13/pandas-useful-notes-advanced/" data-id="clw0convh000s6ojf69wfa9pd" data-title="Data Analysis Note - Pandas Part 3" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2023/08/13/pandas-useful-notes-advanced/" data-id="clwrklmwe000zzkjfazo9em1r" data-title="Data Analysis Note - Pandas Part 3 - Groupby" class="article-share-link">Share</a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-matplotlib-notes" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/29/matplotlib-notes/" class="article-date">
+  <time class="dt-published" datetime="2023-07-29T06:10:08.000Z" itemprop="datePublished">2023-07-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/07/29/matplotlib-notes/">Matplotlib Notes</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>This post covers useful notes for using matplotlib (ploting charts for data analysis). I’ve listed quite lots of useful notes for future reference. </p>
+<h3>The most commonly used methods I've encountered</h3>
+
+
+<p><strong>1. Presettings</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># import the package:</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># check avaiable predefined styles:</span></span><br><span class="line">&gt;&gt; plt.style.available</span><br><span class="line"></span><br><span class="line">&gt;&gt; [<span class="string">&#x27;Solarize_Light2&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;_classic_test_patch&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;_mpl-gallery&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;_mpl-gallery-nogrid&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;bmh&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;classic&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;dark_background&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;fast&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;fivethirtyeight&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;ggplot&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;grayscale&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;seaborn-v0_8&#x27;</span>,</span><br><span class="line">    ...</span><br><span class="line">    <span class="string">&#x27;seaborn-v0_8-white&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;seaborn-v0_8-whitegrid&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;tableau-colorblind10&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># to use the style:</span></span><br><span class="line">&gt;&gt; plt.style.use(<span class="string">&quot;seaborn-notebook&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#<span class="doctag">NOTE:</span> if want to save file must have plt.show() after plt.savefig() methods;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#We can use the command plt.savefig() to save out to many different file formats, such as png, svg, or pdf. After plotting, we can call plt.savefig(&#x27;name_of_graph.png&#x27;):</span></span><br><span class="line">plt.savefig(<span class="string">&#x27;image.png&#x27;</span>)   <span class="comment"># is high quality but larger file;</span></span><br><span class="line">plt.savefig(<span class="string">&#x27;image.png&#x27;</span>, dpi = <span class="number">300</span>)  <span class="comment"># dpi is high quality resolation image; and lager</span></span><br><span class="line">plt.savefig(<span class="string">&#x27;subfolder/filename.png&#x27;</span>)  </span><br><span class="line">plt.savefig(<span class="string">&#x27;filename.jpg&#x27;</span>, quality = <span class="number">50</span>)  <span class="comment"># jpg is small size image but lower quality; quality is only for &#x27;jpg&#x27; or &#x27;jpeg&#x27;;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>2. More examples for plotting charts</strong></p>
+        
+          <p class="article-more-link">
+            <a href="/2023/07/29/matplotlib-notes/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://k-z007.github.io/2023/07/29/matplotlib-notes/" data-id="clwrklmw10003zkjfcw4v0swq" data-title="Matplotlib Notes" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/matplotlib/" rel="tag">matplotlib</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/plot/" rel="tag">plot</a></li></ul>
 
     </footer>
   </div>
@@ -353,7 +454,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2023/07/16/pandas-useful-notes-p2/" data-id="clw0conv900086ojfcg2sarpu" data-title="Data Analysis Note - Pandas Part 2 - Series" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2023/07/16/pandas-useful-notes-p2/" data-id="clwrklmw7000azkjfcf9k7ary" data-title="Data Analysis Note - Pandas Part 2 - Series" class="article-share-link">Share</a>
       
       
       
@@ -408,7 +509,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2023/06/03/panda-useful-notes-p1/" data-id="clw0conv900076ojf7prf4tpn" data-title="Data Analysis Note - Pandas Part 1" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2023/06/03/panda-useful-notes-p1/" data-id="clwrklmw50007zkjf3ikg0kwj" data-title="Data Analysis Note - Pandas Part 1" class="article-share-link">Share</a>
       
       
       
@@ -476,7 +577,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2023/01/15/python-virtual-evn/" data-id="clw0convh000t6ojf9bjdaw1x" data-title="Python Virtual Environment" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2023/01/15/python-virtual-evn/" data-id="clwrklmwf0014zkjf89p56jxv" data-title="Python Virtual Environment" class="article-share-link">Share</a>
       
       
       
@@ -503,7 +604,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ai/" rel="tag">ai</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpa/" rel="tag">jpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ollama/" rel="tag">ollama</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ai/" rel="tag">ai</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpa/" rel="tag">jpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matplotlib/" rel="tag">matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ollama/" rel="tag">ollama</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plot/" rel="tag">plot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
     </div>
   </div>
 
@@ -513,7 +614,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ai/" style="font-size: 10px;">ai</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/data-analysis/" style="font-size: 20px;">data_analysis</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/ollama/" style="font-size: 10px;">ollama</a> <a href="/tags/pandas/" style="font-size: 16.67px;">pandas</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a>
+      <a href="/tags/ai/" style="font-size: 10px;">ai</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/data-analysis/" style="font-size: 20px;">data_analysis</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/ollama/" style="font-size: 10px;">ollama</a> <a href="/tags/pandas/" style="font-size: 16.67px;">pandas</a> <a href="/tags/plot/" style="font-size: 10px;">plot</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a>
     </div>
   </div>
 
@@ -522,7 +623,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li></ul>
     </div>
   </div>
 
@@ -551,7 +652,7 @@
           </li>
         
           <li>
-            <a href="/2023/08/13/pandas-useful-notes-advanced/">Data Analysis Note - Pandas Part 3</a>
+            <a href="/2023/10/15/pandas-useful-notes-p3/">Data Analysis Note - Pandas Part 4 - Join Tables</a>
           </li>
         
       </ul>
