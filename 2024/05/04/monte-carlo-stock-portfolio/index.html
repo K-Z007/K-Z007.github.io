@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Monte Carlo Simulation using Python | K.Z.&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Here is an example project to use Python, Pandas, Numpy and Matplotlib to perform a Monte Carlo Simulation for an investment portfolio of investing in 2 stocks namely IVV.US and QQQ.US, by running a s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Monte Carlo Simulation using Python">
+<meta property="og:url" content="https://k-z007.github.io/2024/05/04/monte-carlo-stock-portfolio/index.html">
+<meta property="og:site_name" content="K.Z.&#39;s Blog">
+<meta property="og:description" content="Here is an example project to use Python, Pandas, Numpy and Matplotlib to perform a Monte Carlo Simulation for an investment portfolio of investing in 2 stocks namely IVV.US and QQQ.US, by running a s">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://k-z007.github.io/2024/05/04/monte-carlo-stock-portfolio/final-plot.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/05/04/monte-carlo-stock-portfolio/final-plot.JPG">
+<meta property="article:published_time" content="2024-05-04T10:45:26.000Z">
+<meta property="article:modified_time" content="2024-05-30T10:26:45.905Z">
+<meta property="article:author" content="K.Z.">
+<meta property="article:tag" content="data_analysis">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="pandas">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://k-z007.github.io/2024/05/04/monte-carlo-stock-portfolio/final-plot.JPG">
+  
+    <link rel="alternate" href="/atom.xml" title="K.Z.'s Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">K.Z.&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://k-z007.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-monte-carlo-stock-portfolio" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/04/monte-carlo-stock-portfolio/" class="article-date">
+  <time class="dt-published" datetime="2024-05-04T10:45:26.000Z" itemprop="datePublished">2024-05-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Monte Carlo Simulation using Python
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>Here is an example project to use Python, Pandas, Numpy and Matplotlib to perform a Monte Carlo Simulation for an investment portfolio of investing in 2 stocks namely IVV.US and QQQ.US, by running a simulation of 1000 scenarios:</strong></p>
+<p><img src="/2024/05/04/monte-carlo-stock-portfolio/final-plot.JPG"></p>
+<span id="more"></span>
+
+
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">ivv = pd.read_csv(<span class="string">r&quot;.\financial_data\IVV_US.csv&quot;</span>)</span><br><span class="line">qqq = pd.read_csv(<span class="string">r&quot;.\financial_data\QQQ_US.csv&quot;</span>)</span><br><span class="line"></span><br><span class="line">ivv.tail(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">	    Date	    Open    	High    	Low	        Close	    Adj Close	Volume</span><br><span class="line"><span class="number">6011</span>	<span class="number">2024</span>-04-<span class="number">12</span>	<span class="number">516.929993</span>	<span class="number">518.349976</span>	<span class="number">511.600006</span>	<span class="number">513.309998</span>	<span class="number">513.309998</span>	<span class="number">6512900</span></span><br><span class="line"><span class="number">6012</span>	<span class="number">2024</span>-04-<span class="number">15</span>	<span class="number">517.690002</span>	<span class="number">517.809998</span>	<span class="number">506.049988</span>	<span class="number">506.950012</span>	<span class="number">506.950012</span>	<span class="number">6397300</span></span><br><span class="line"></span><br><span class="line">qqq.tail(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">        Date	    Open	    High	    Low     	Close	    Adj Close	Volume</span><br><span class="line"><span class="number">6315</span>	<span class="number">2024</span>-04-<span class="number">16</span>	<span class="number">430.899994</span>	<span class="number">433.760010</span>	<span class="number">429.700012</span>	<span class="number">431.100006</span>	<span class="number">431.100006</span>	<span class="number">47619000</span></span><br><span class="line"><span class="number">6316</span>	<span class="number">2024</span>-04-<span class="number">17</span>	<span class="number">433.100006</span>	<span class="number">433.119995</span>	<span class="number">424.899994</span>	<span class="number">425.839996</span>	<span class="number">425.839996</span>	<span class="number">56880500</span></span><br><span class="line"><span class="number">6317</span>	<span class="number">2024</span>-04-<span class="number">18</span>	<span class="number">426.489990</span>	<span class="number">428.239990</span>	<span class="number">422.829987</span>	<span class="number">423.410004</span>	<span class="number">423.410004</span>	<span class="number">46549400</span></span><br><span class="line"><span class="number">6318</span>	<span class="number">2024</span>-04-<span class="number">19</span>	<span class="number">422.220001</span>	<span class="number">422.750000</span>	<span class="number">413.070007</span>	<span class="number">414.649994</span>	<span class="number">414.649994</span>	<span class="number">75136600</span></span><br><span class="line"><span class="number">6319</span>	<span class="number">2024</span>-04-<span class="number">22</span>	<span class="number">417.309998</span>	<span class="number">421.179993</span>	<span class="number">413.940002</span>	<span class="number">418.820007</span>	<span class="number">418.820007</span>	<span class="number">47807700</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># merge 2 tables:</span></span><br><span class="line">merged_close = pd.merge(ivv, qqq, on=<span class="string">&#x27;Date&#x27;</span>,suffixes=[<span class="string">&#x27;_ivv&#x27;</span>, <span class="string">&#x27;_qqq&#x27;</span>])[[<span class="string">&#x27;Date&#x27;</span>, <span class="string">&#x27;Close_ivv&#x27;</span>,<span class="string">&#x27;Close_qqq&#x27;</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment"># set date column to the index:</span></span><br><span class="line">merged_close[<span class="string">&#x27;Date&#x27;</span>] = pd.to_datetime(merged_close[<span class="string">&#x27;Date&#x27;</span>])</span><br><span class="line">merged_close.set_index(<span class="string">&#x27;Date&#x27;</span>, inplace = <span class="literal">True</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Calculate daily returns and mean returns and Compute pairwise covariance</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># get the daily returns and mean returns</span></span><br><span class="line">returns_close_prices = merged_close.pct_change()</span><br><span class="line">mean_returns = returns_close_prices.mean()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Compute pairwise covariance of for the daily returns for both IVV and QQQ</span></span><br><span class="line">covMatrix_close_prices = returns_close_prices.cov()</span><br><span class="line"></span><br><span class="line">covMatrix_close_prices</span><br><span class="line"></span><br><span class="line">&gt;&gt; result:</span><br><span class="line">	        Close_ivv	Close_qqq</span><br><span class="line">Close_ivv	<span class="number">0.000147</span>	<span class="number">0.000172</span></span><br><span class="line">Close_qqq	<span class="number">0.000172</span>	<span class="number">0.000274</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Perform Monte Carlo Simulation for 1000 days invesment time frame with 1000 scenarios</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#generate random weights for the portfolio allocations to each stocks:</span></span><br><span class="line">weights = np.random.random(<span class="built_in">len</span>(mean_returns))</span><br><span class="line"><span class="comment"># Normalizing the Weights: To ensure that the weights sum up to 1</span></span><br><span class="line">weights /= np.<span class="built_in">sum</span>(weights)</span><br><span class="line"></span><br><span class="line"><span class="comment"># number of simulations</span></span><br><span class="line">num_of_sims = <span class="number">100</span></span><br><span class="line"><span class="comment"># timeframe in days</span></span><br><span class="line">t_days = <span class="number">100</span></span><br><span class="line"></span><br><span class="line">num_holdings= <span class="built_in">len</span>(weights)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Creates a matrix of shape (t_days, num_holdings) where each entry is filled with the mean returns of the assets.</span></span><br><span class="line">mean_matrix = np.full(shape=(t_days, num_holdings), fill_value=mean_returns)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Transposes the mean returns matrix to shape (num_holdings, t_days) to match the dimensions required for later calculations.</span></span><br><span class="line">mean_matrix = mean_matrix.T</span><br><span class="line"></span><br><span class="line"><span class="comment"># Initializes an empty matrix to store the results of the portfolio simulations. The matrix has t_days rows and num_of_sims columns.</span></span><br><span class="line">portfolio_sims = np.full(shape=(t_days, num_of_sims), fill_value=<span class="number">0.0</span>)</span><br><span class="line"></span><br><span class="line">inital_value = <span class="number">10000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Loops over the number of simulations:</span></span><br><span class="line"><span class="keyword">for</span> m <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, num_of_sims):</span><br><span class="line">    <span class="comment"># Draw random values from a normal distribution. This matrix simulates daily returns for each asset over the specified timeframe.</span></span><br><span class="line">    z = np.random.normal(size=(t_days, num_holdings))</span><br><span class="line">    <span class="comment"># Computes the Cholesky decomposition of the covariance matrix of the asset returns, to introduce correlations between the random returns.</span></span><br><span class="line">    l = np.linalg.cholesky(covMatrix_close_prices)</span><br><span class="line">    <span class="comment"># Calculates the daily returns for each asset by adding the mean returns to the product of the Cholesky decomposition</span></span><br><span class="line">    <span class="comment"># and the random normal variables. This is where the correlation between asset returns is applied.</span></span><br><span class="line">    daily_returns = mean_matrix + np.inner(l, z)</span><br><span class="line">    portfolio_sims[:,m] = np.cumprod(np.inner(weights, daily_returns.T) + <span class="number">1</span>) * inital_value</span><br><span class="line"></span><br><span class="line">plt.plot(portfolio_sims)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;Portfolio Value ($)&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;Days&#x27;</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Monte Carlo Simulation of a stock portfolio with investing of &#x27;</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/05/04/monte-carlo-stock-portfolio/final-plot.JPG"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://k-z007.github.io/2024/05/04/monte-carlo-stock-portfolio/" data-id="clwt43xx40007h8jfbhrf1yl5" data-title="Monte Carlo Simulation using Python" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/04/21/data-analysis-ivv/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Time Series Analysis For IVV.US</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ai/" rel="tag">ai</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpa/" rel="tag">jpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matplotlib/" rel="tag">matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ollama/" rel="tag">ollama</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plot/" rel="tag">plot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ai/" style="font-size: 10px;">ai</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/data-analysis/" style="font-size: 20px;">data_analysis</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/ollama/" style="font-size: 10px;">ollama</a> <a href="/tags/pandas/" style="font-size: 16.67px;">pandas</a> <a href="/tags/plot/" style="font-size: 10px;">plot</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/05/04/monte-carlo-stock-portfolio/">Monte Carlo Simulation using Python</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/21/data-analysis-ivv/">Time Series Analysis For IVV.US</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/01/local-private-AI/">Your Local Private AI Assistant</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/18/springboot-jpa-jdbc/">Spring Framework - JPA, Hibernate and JDBC</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/28/minconda-condavenv/">Miniconda and Conda Virtual Environment</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 K.Z.<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
