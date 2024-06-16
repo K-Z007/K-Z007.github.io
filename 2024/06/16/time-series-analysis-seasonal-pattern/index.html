@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Data Reveals - Seasonal Patterns in the Equity Market - Is the ‘Sell in May and Go Away, Come Back in September’ Strategy Reliable? | K.Z.&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="This blog delves into the application of data analysis technologies, including Python, Pandas, and Jupyter Notebook, to investigate potential seasonal patterns in the stock market, such as the ‘Sell i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data Reveals - Seasonal Patterns in the Equity Market - Is the ‘Sell in May and Go Away, Come Back in September’ Strategy Reliable?">
+<meta property="og:url" content="https://k-z007.github.io/2024/06/16/time-series-analysis-seasonal-pattern/index.html">
+<meta property="og:site_name" content="K.Z.&#39;s Blog">
+<meta property="og:description" content="This blog delves into the application of data analysis technologies, including Python, Pandas, and Jupyter Notebook, to investigate potential seasonal patterns in the stock market, such as the ‘Sell i">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://k-z007.github.io/2024/06/16/time-series-analysis-seasonal-pattern/ivv-0.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/06/16/time-series-analysis-seasonal-pattern/ivv-1.jpg">
+<meta property="og:image" content="https://k-z007.github.io/2024/06/16/time-series-analysis-seasonal-pattern/ivv-2.jpg">
+<meta property="og:image" content="https://k-z007.github.io/2024/06/16/time-series-analysis-seasonal-pattern/ivv-3.jpg">
+<meta property="og:image" content="https://k-z007.github.io/2024/06/16/time-series-analysis-seasonal-pattern/ivv-4.jpg">
+<meta property="og:image" content="https://k-z007.github.io/2024/06/16/time-series-analysis-seasonal-pattern/ivv-5.jpg">
+<meta property="og:image" content="https://k-z007.github.io/2024/06/16/time-series-analysis-seasonal-pattern/ivv-6.jpg">
+<meta property="og:image" content="https://k-z007.github.io/2024/06/16/time-series-analysis-seasonal-pattern/ivv-7.jpg">
+<meta property="og:image" content="https://k-z007.github.io/2024/06/16/time-series-analysis-seasonal-pattern/ivv-8.jpg">
+<meta property="og:image" content="https://k-z007.github.io/2024/06/16/time-series-analysis-seasonal-pattern/ivv-9.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/06/16/time-series-analysis-seasonal-pattern/STR_1.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/06/16/time-series-analysis-seasonal-pattern/STR_5.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/06/16/time-series-analysis-seasonal-pattern/STR_8.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/06/16/time-series-analysis-seasonal-pattern/profit_loss_price_tb.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/06/16/time-series-analysis-seasonal-pattern/long-term-trend-tb.JPG">
+<meta property="article:published_time" content="2024-06-16T02:50:17.000Z">
+<meta property="article:modified_time" content="2024-06-16T08:25:47.377Z">
+<meta property="article:author" content="K.Z.">
+<meta property="article:tag" content="data_analysis">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="pandas">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://k-z007.github.io/2024/06/16/time-series-analysis-seasonal-pattern/ivv-0.JPG">
+  
+    <link rel="alternate" href="/atom.xml" title="K.Z.'s Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">K.Z.&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://k-z007.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-time-series-analysis-seasonal-pattern" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/06/16/time-series-analysis-seasonal-pattern/" class="article-date">
+  <time class="dt-published" datetime="2024-06-16T02:50:17.000Z" itemprop="datePublished">2024-06-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Data Reveals - Seasonal Patterns in the Equity Market - Is the ‘Sell in May and Go Away, Come Back in September’ Strategy Reliable?
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>This blog delves into the application of data analysis technologies, including Python, Pandas, and Jupyter Notebook, to investigate potential seasonal patterns in the stock market, such as the ‘Sell in May and go away, but remember to come back in September’ phenomenon. For the detailed project, please refer to the link on <a target="_blank" rel="noopener" href="https://github.com/K-Z007/time-series-analysis/blob/master/time_series_analysis_ivv.ipynb">GitHub</a>.</p>
+<p>The saying ‘Sell in May and go away, but remember to come back in September’ is a well-known financial proverb. It suggests that the market’s performance is typically weaker in the six-month period between May and October. To test the validity of this maxim, I analyzed the price data of IVV.US (iShares Core S&amp;P 500 ETF) from 2000 to 2024. This ETF closely tracks the investment results of the S&amp;P 500 index, composed of large-capitalization U.S. equities.</p>
+<h3>Close prices for each year from 2000 to 2024</h3>
+
+<p><em>NOTE: The dotted vertical line indicates the lowest price of that year. (IVV started trading on May 2000)</em></p>
+<p><img src="/2024/06/16/time-series-analysis-seasonal-pattern/ivv-0.JPG"></p>
+<span id="more"></span>
+<p><img src="/2024/06/16/time-series-analysis-seasonal-pattern/ivv-1.jpg"><br><img src="/2024/06/16/time-series-analysis-seasonal-pattern/ivv-2.jpg"><br><img src="/2024/06/16/time-series-analysis-seasonal-pattern/ivv-3.jpg"><br><img src="/2024/06/16/time-series-analysis-seasonal-pattern/ivv-4.jpg"><br><img src="/2024/06/16/time-series-analysis-seasonal-pattern/ivv-5.jpg"><br><img src="/2024/06/16/time-series-analysis-seasonal-pattern/ivv-6.jpg"><br><img src="/2024/06/16/time-series-analysis-seasonal-pattern/ivv-7.jpg"><br><img src="/2024/06/16/time-series-analysis-seasonal-pattern/ivv-8.jpg"><br><img src="/2024/06/16/time-series-analysis-seasonal-pattern/ivv-9.JPG"></p>
+<p><strong>Trading Strategies Assumptions</strong>:</p>
+<p>If I adopted the following different strategies, buying in September of the current year and selling in different months (e.g., Jan, Feb, Mar, Apr, May, Jun, Jul, Aug) of the next year, e.g. I traded 1 unit of IVV each year from 2000 to 2024 and calculated the total profit for each of the following strategies. Considering the length of this article, I only listed 3 main strategies (Jan, May, Aug) for your review. (see github for more details if you are interested in the full)</p>
+<p><strong>Strategy 1</strong>:<br><em>Year 1:</em> Purchase 1 unit of IVV in mid-September 2000 at the price of $146.7 and hold it until mid-January of the following year (2001), then sell it at the price of $132.1. You would have a loss of $14.5;<br><em>Year 2:</em> Stay out of the market until mid-September 2001, then reinvest in 1 unit of IVV at a price of $110.1. Hold this until mid-January of the next year (2002) and sell it at the price of $115.1. You would have a profit of $5.0;<br>Repeat this process annually from 2000 to 2024. See detailed breakdown table, after 24 years doing this repeated action, you would have a total profit of $145.3. (without considering transaction costs and CGT).</p>
+<p><img src="/2024/06/16/time-series-analysis-seasonal-pattern/STR_1.JPG"></p>
+<p><strong>Strategy 5</strong>:<br><em>Year 1:</em> Purchase 1 unit of IVV in mid-September 2000 at the price of $146.7 and hold it until mid-January of the following year (2001), then sell it at the price of $125.3. You would have a loss of $21.3;<br><em>Year 2:</em> Stay out of the market until mid-September 2001, then reinvest in 1 unit of IVV at a price of $110.1. Hold this until mid-January of the next year (2002) and sell it at the price of $109.5. You would have a loss of $0.6;<br>Repeat this process annually from 2000 to 2024. See detailed breakdown table, after 24 years doing this repeated action, you would have a total profit of $242.6. (without considering transaction costs and CGT).</p>
+<p><img src="/2024/06/16/time-series-analysis-seasonal-pattern/STR_5.JPG"></p>
+<p><strong>Strategy 8</strong>:<br><em>Year 1:</em> Purchase 1 unit of IVV in mid-September 2000 at the price of $146.7 and hold it until mid-January of the following year (2001), then sell it at the price of $118.2. You would have a loss of $28.5;<br><em>Year 2:</em> Stay out of the market until mid-September 2001, then reinvest in 1 unit of IVV at a price of $110.1. Hold this until mid-January of the next year (2002) and sell it at the price of $93.6. You would have a loss of $16.5;<br>Repeat this process annually from 2000 to 2024. See detailed breakdown table, after 24 years doing this repeated action, you would have a total profit of $388.5. (without considering transaction costs and CGT).</p>
+<p><img src="/2024/06/16/time-series-analysis-seasonal-pattern/STR_8.JPG"></p>
+<hr>
+<p><em>Presented below is the final summary table that illustrates the price differences for each trading interval. This table displays the differences between the prices in January, February, March, April, May, June, July, and August (from 2001 to 2024) and their corresponding prices in September of the preceding year (from 2000 to 2023):</em></p>
+<p><img src="/2024/06/16/time-series-analysis-seasonal-pattern/profit_loss_price_tb.JPG"></p>
+<h1>Seasonal Patterns Finding</h1>
+After summarizing all of the startegies in above table, I obtain the following results (without considering transaction costs and capital gains tax):
+
+<p> 1.The sum of the column ‘mid_jan_price’ is $145.31. This means that if you adopt the strategy of<br> “buy in September of the current year, sell in January of the next year,” with trading 1 unit of IVV each year from 2000 to 2024, your total profit would be $145.31.</p>
+<p> 2.The sum of the column ‘mid_feb_price’ is $222.21. This means that if you adopt the strategy of<br> “buy in September of the current year, sell in February of the next year,” with trading 1 unit of IVV each year from 2000 to 2024, your total profit would be $222.21.</p>
+<p> 3.The sum of the column ‘mid_mar_price’ is $128.70. This means that if you adopt the strategy of<br> “buy in September of the current year, sell in March of the next year,” with trading 1 unit of IVV each year from 2000 to 2024, your total profit would be $128.70.</p>
+<p> 4.The sum of the column ‘mid_apr_price’ is $202.56. This means that if you adopt the strategy of<br> “buy in September of the current year, sell in April of the next year,” with trading 1 unit of IVV each year from 2000 to 2024,<br> your total profit would be $202.56.</p>
+<p> 5.The sum of the column ‘mid_may_price’ is $242.65. This means that if you adopt the strategy of<br> “buy in September of the current year, sell in May of the next year,” with trading 1 unit of IVV each year from 2000 to 2024,<br> your total profit would be $242.65.</p>
+<p> 6.The sum of the column ‘mid_jun_price’ is $290.58. This means that if you adopt the strategy of<br> “buy in September of the current year, sell in June of the next year,” with trading 1 unit of IVV each year from 2000 to 2024,<br> your total profit would be $290.58.</p>
+<p> 7.The sum of the column ‘mid_jul_price’ is $344.69. This means that if you adopt the strategy of<br> “buy in September of the current year, sell in July of the next year,” with trading 1 unit of IVV each year from 2000 to 2024,<br> your total profit would be $344.69.</p>
+<p> 8.The sum of the column ‘mid_aug_price’ is $388.54. This means that if you adopt the strategy of<br> “buy in September of the current year, sell in Aug of the next year,” with trading 1 unit of IVV each year from 2000 to 2024,<br> your total profit would be $388.54.</p>
+<p><strong>In summary, based on historical data, you can still profit by simply following “buy in September of the current year, and sell in May of the next year.”<br>However, this is not the most optimal strategy. The data indicates that the longer you hold, the more profit you can make.<br>Frequent trading erodes your profit due to higher brokerage costs and CGT. As a result, long-term passive holders of IVV tend to make more money. For instance, if you buy 1 unit of IVV in mid-September 2000 at a price of $146.65 and hold it until June 10, 2024, when the price is $538.33, you would end up with a profit of $391.68. This profit is higher than any of the above trading strategies, and you will incur significantly lower transaction costs and capital gains tax.</strong></p>
+<h1>Additional Findings for Long-Term Investors</h1>
+
+<p><strong>In addition</strong>, from the charts I can also find interesting findings in long-term trend over 24 Years:</p>
+<p><strong>Significant Fluctuations</strong>: Most years exhibit significant price fluctuations, with only 6 years showing steady upward trends without significant fluctuations.</p>
+<p><strong>Opportunities for Traders and Investors</strong>: The remaining years have seen dramatic ups and downs during certain months, creating opportunities for both short-term traders and long-term investors.</p>
+<p><strong>Following table shows First Quarter Advantage</strong>: Long-term investors should note that the first quarter (January, February, March) often presents the lowest entry point, with a combined 48% chance.</p>
+<p><strong>Second Entry Point</strong>: Another entry point may emerge during August, September, or October, with a 24% chance.</p>
+<h3>Table of months exprienced the lowest price of that year:</h3> meaning over the past 25 years of history, there are 7 years out of 25 years experienced that January has the lowest price of that year.Interestingly, there is no May in this table:
+
+<p><img src="/2024/06/16/time-series-analysis-seasonal-pattern/long-term-trend-tb.JPG"></p>
+<p>It’s important to note that past performance is not indicative of future results, and all investment strategies should be considered carefully and in consultation with your financial professionals.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://k-z007.github.io/2024/06/16/time-series-analysis-seasonal-pattern/" data-id="clxhanvo4001a6cjf5lcw3o6c" data-title="Data Reveals - Seasonal Patterns in the Equity Market - Is the ‘Sell in May and Go Away, Come Back in September’ Strategy Reliable?" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/06/02/python-pandas-vs-powerbi/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python &amp; Pandas VS Power BI for Data Cleaning</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ai/" rel="tag">ai</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpa/" rel="tag">jpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matplotlib/" rel="tag">matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ollama/" rel="tag">ollama</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plot/" rel="tag">plot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/powerbi/" rel="tag">powerbi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ai/" style="font-size: 10px;">ai</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/data-analysis/" style="font-size: 20px;">data_analysis</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/ollama/" style="font-size: 10px;">ollama</a> <a href="/tags/pandas/" style="font-size: 16.67px;">pandas</a> <a href="/tags/plot/" style="font-size: 10px;">plot</a> <a href="/tags/powerbi/" style="font-size: 10px;">powerbi</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/16/time-series-analysis-seasonal-pattern/">Data Reveals - Seasonal Patterns in the Equity Market - Is the ‘Sell in May and Go Away, Come Back in September’ Strategy Reliable?</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/02/python-pandas-vs-powerbi/">Python &amp; Pandas VS Power BI for Data Cleaning</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/04/monte-carlo-stock-portfolio/">Monte Carlo Simulation using Python</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/21/data-analysis-ivv/">Time Series Analysis For IVV.US</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/01/local-private-AI/">Your Local Private AI Assistant</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 K.Z.<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -71,6 +71,113 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-pandas-useful-notes-p2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/16/pandas-useful-notes-p2/" class="article-date">
+  <time class="dt-published" datetime="2023-07-16T06:00:08.000Z" itemprop="datePublished">2023-07-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/07/16/pandas-useful-notes-p2/">Data Analysis Note - Pandas Part 2 - Series</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>When working with Pandas’ specific column, you would have a new datatype called Series. A Series is a one-dimensional array of data. It can hold data of any type: string, integer, float, dictionaries, lists, booleans, and more.</p>
+<h3>The most commonly used methods for working with Series</h3>
+
+
+<p><strong>1. Basic info checking</strong>:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># only display the summary statistics of this selected column:</span></span><br><span class="line">&gt;&gt; df.column_name.describe()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Return a Series containing counts of unique values. The resulting object will be in descending order so that the first element is the most frequently-occurring element. Excludes NA values by default.</span></span><br><span class="line">&gt;&gt; df.column_name.value_counts() </span><br><span class="line"></span><br><span class="line"><span class="comment"># sort the entire dataframe based on the order of [&#x27;column_1&#x27;,&#x27;column_2&#x27;] and return a Series (with 2 indexes) containing counts of unique values. The resulting object will be in descending order so that the first element is the most frequently-occurring element. Excludes NA values by default.</span></span><br><span class="line">df[[<span class="string">&#x27;column_1&#x27;</span>,<span class="string">&#x27;column_2&#x27;</span>]].value_counts()</span><br><span class="line"><span class="comment"># for instance, get the number of books sold in certain years based on different genre:</span></span><br><span class="line">books[[<span class="string">&#x27;Genre&#x27;</span>,<span class="string">&#x27;Year&#x27;</span>]].value_counts()</span><br><span class="line">&gt;&gt; result -&gt;</span><br><span class="line">&gt;&gt;  Genre        Year</span><br><span class="line">    Non Fiction  <span class="number">2015</span>    <span class="number">33</span></span><br><span class="line">                 <span class="number">2016</span>    <span class="number">31</span></span><br><span class="line">                 <span class="number">2019</span>    <span class="number">30</span></span><br><span class="line">                 <span class="number">2010</span>    <span class="number">30</span></span><br><span class="line">                 <span class="number">2018</span>    <span class="number">29</span></span><br><span class="line">    Fiction      <span class="number">2014</span>    <span class="number">29</span></span><br><span class="line">    Non Fiction  <span class="number">2012</span>    <span class="number">29</span></span><br><span class="line">                 <span class="number">2011</span>    <span class="number">29</span></span><br><span class="line">                 <span class="number">2017</span>    <span class="number">26</span></span><br><span class="line">                 <span class="number">2013</span>    <span class="number">26</span></span><br><span class="line">                 <span class="number">2009</span>    <span class="number">26</span></span><br><span class="line">    Fiction      <span class="number">2017</span>    <span class="number">24</span></span><br><span class="line">                 <span class="number">2013</span>    <span class="number">24</span></span><br><span class="line">                 <span class="number">2009</span>    <span class="number">24</span></span><br><span class="line">                 <span class="number">2018</span>    <span class="number">21</span></span><br><span class="line">    Non Fiction  <span class="number">2014</span>    <span class="number">21</span></span><br><span class="line">    Fiction      <span class="number">2012</span>    <span class="number">21</span></span><br><span class="line">                 <span class="number">2011</span>    <span class="number">21</span></span><br><span class="line">                 <span class="number">2010</span>    <span class="number">20</span></span><br><span class="line">                 <span class="number">2019</span>    <span class="number">20</span></span><br><span class="line">                 <span class="number">2016</span>    <span class="number">19</span></span><br><span class="line">                 <span class="number">2015</span>    <span class="number">17</span></span><br><span class="line">    Name: count, dtype: int64</span><br><span class="line"></span><br><span class="line"><span class="comment"># will return an array of unique value (default to include &#x27;NaN&#x27; value)</span></span><br><span class="line">&gt;&gt; df.column_name.unique()</span><br><span class="line"></span><br><span class="line"><span class="comment"># will return a number showing how many unique values are there, (default to NOT include &#x27;NaN&#x27; value)</span></span><br><span class="line">&gt;&gt; df.column_name.nunique()</span><br><span class="line"><span class="comment"># including &#x27;NaN&#x27; value</span></span><br><span class="line">&gt;&gt; df.column_name.nunique(dropna=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># return the nth of largest items;</span></span><br><span class="line">df.column_name.nlargest(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># return the nth of smallest items;</span></span><br><span class="line">df.column_name.nsmallest(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>2. Filter &#x2F; select from a series:</strong></p>
+        
+          <p class="article-more-link">
+            <a href="/2023/07/16/pandas-useful-notes-p2/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://k-z007.github.io/2023/07/16/pandas-useful-notes-p2/" data-id="clxhanvo200166cjfeeyd0axl" data-title="Data Analysis Note - Pandas Part 2 - Series" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-panda-useful-notes-p1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/06/03/panda-useful-notes-p1/" class="article-date">
+  <time class="dt-published" datetime="2023-06-03T05:10:08.000Z" itemprop="datePublished">2023-06-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/06/03/panda-useful-notes-p1/">Data Analysis Note - Pandas Part 1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>This post covers useful notes for using pandas (the famous package for Python for data analysis). I’ve listed quite lots of useful notes for future reference. </p>
+<h3>The most commonly used methods I've encountered</h3>
+
+
+<p><strong>1. To change the settings for displaying the dataframe linke to offical doc</strong> - <a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.get_option.html">pandas.get_option</a>:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Display the current setting for this param (&quot;display.max_rows&quot;):</span></span><br><span class="line">pd.get_option(<span class="string">&quot;display.max_rows&quot;</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment"># Disply the full rows for whole table (cautious would crash your program if large dataset):</span></span><br><span class="line">pd.set_option(<span class="string">&#x27;display.max_rows&#x27;</span>, <span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Other usful settings:</span></span><br><span class="line">pd.reset_option(<span class="string">&quot;display.max_colwidth&quot;</span>, <span class="number">1000</span>) <span class="comment"># to change the settings of the column width;</span></span><br><span class="line">display.precision  <span class="comment"># to change the diaply on how many decimal place of float figure;</span></span><br><span class="line">pd.set_option(<span class="string">&quot;display.float_format&quot;</span>, <span class="string">&quot;&#123;:,&#125;&quot;</span>.<span class="built_in">format</span>) <span class="comment"># To format the float number as 1,000.00</span></span><br><span class="line"><span class="comment"># This can also make sure not show the scientific notation. </span></span><br><span class="line"></span><br><span class="line">pd.set_option(<span class="string">&#x27;display.float_format&#x27;</span>, <span class="string">&quot;&#123;:,.2f&#125;&quot;</span>.<span class="built_in">format</span>)   <span class="comment"># format like: 53,844,501.67</span></span><br><span class="line">pd.set_option(<span class="string">&#x27;display.float_format&#x27;</span>, <span class="string">&quot;$&#123;:,.2f&#125;&quot;</span>.<span class="built_in">format</span>)  <span class="comment">#  	$53,844,501.67</span></span><br><span class="line">pd.set_option(<span class="string">&#x27;display.float_format&#x27;</span>, <span class="string">&quot;&#123;:.0f&#125;&quot;</span>.<span class="built_in">format</span>)    <span class="comment"># get rid of .0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># To Reset to defaul option settings:</span></span><br><span class="line">pd.reset_option(<span class="string">&quot;display.max_rows&quot;</span>)  <span class="comment"># rest value for this param,</span></span><br><span class="line">pd.reset_option(<span class="string">&quot;all&quot;</span>)  <span class="comment"># reset all options</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>2. Read various files with more options:</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Change the column name, dtypes when reading the file:</span></span><br><span class="line">df = pd.read_csv(<span class="string">r&quot;name.csv&quot;</span>, </span><br><span class="line">                 names = new_colnames, header=<span class="number">0</span>, dtype = &#123;<span class="string">&quot;specific_column&quot;</span>:<span class="built_in">float</span>&#125;, na_values = <span class="string">&quot;N.A.&quot;</span>)  <span class="comment">#set null value to &quot;N.A.&quot;</span></span><br><span class="line"><span class="comment"># names must be used with header=0 to change the column name and skip the old header row.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># # Get database / table from website:</span></span><br><span class="line">url = <span class="string">&#x27;https://....&#x27;</span></span><br><span class="line">df = pd.read_csv(url, sep=<span class="string">&#x27;;&#x27;</span>)</span><br><span class="line">pd.read_table(url, sep=<span class="string">&#x27;;&#x27;</span>)   <span class="comment"># if not a csv file;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Read file that is not comma-separated and adding or change the column names:</span></span><br><span class="line">col_labels=[<span class="string">&#x27;id&#x27;</span>,<span class="string">&#x27;title&#x27;</span>,<span class="string">&#x27;year&#x27;</span>,<span class="string">&#x27;imdb_rating&#x27;</span>,<span class="string">&#x27;imdb_di&#x27;</span>,<span class="string">&#x27;genres&#x27;</span>]</span><br><span class="line">df = pd.read_csv(<span class="string">r&#x27;.\movies.tsv&#x27;</span>, sep=<span class="string">&#x27;\t&#x27;</span>, names=col_labels)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2 ways to parse time when read file:</span></span><br><span class="line"><span class="comment"># Method 1 to parse time: (using python own time module)</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">d_parser = <span class="keyword">lambda</span> x: time.strftime(<span class="string">&quot;%Y-%m-%d %H&quot;</span> ,time.strptime(x, <span class="string">&quot;%Y-%m-%d %I-%p&quot;</span>))</span><br><span class="line">df = pd.read_csv(<span class="string">r&quot;D:\table.csv&quot;</span>, parse_dates=[<span class="string">&quot;Date&quot;</span>], date_parser = d_parser)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Method 2 to parse time: (using pandas datetime)</span></span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line">d_parser = <span class="keyword">lambda</span> x: datetime.strptime(x, <span class="string">&quot;%Y-%m-%d %I-%p&quot;</span>)</span><br><span class="line">df = pd.read_csv(<span class="string">r&quot;D:\table.csv&quot;</span>, parse_dates=[<span class="string">&quot;Date&quot;</span>], date_parser = d_parser)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>3. Check database basic information:</strong></p>
+        
+          <p class="article-more-link">
+            <a href="/2023/06/03/panda-useful-notes-p1/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://k-z007.github.io/2023/06/03/panda-useful-notes-p1/" data-id="clxhanvnx000w6cjf3oog12sb" data-title="Data Analysis Note - Pandas Part 1" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-python-virtual-evn" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/01/15/python-virtual-evn/" class="article-date">
@@ -125,7 +232,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2023/01/15/python-virtual-evn/" data-id="clwt43xxg0019h8jfdh85cre1" data-title="Python Virtual Environment" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2023/01/15/python-virtual-evn/" data-id="clxhanvo000136cjf9t7o04ej" data-title="Python Virtual Environment" class="article-share-link">Share</a>
       
       
       
@@ -157,7 +264,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ai/" rel="tag">ai</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpa/" rel="tag">jpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matplotlib/" rel="tag">matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ollama/" rel="tag">ollama</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plot/" rel="tag">plot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ai/" rel="tag">ai</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpa/" rel="tag">jpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matplotlib/" rel="tag">matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ollama/" rel="tag">ollama</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plot/" rel="tag">plot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/powerbi/" rel="tag">powerbi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
     </div>
   </div>
 
@@ -167,7 +274,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ai/" style="font-size: 10px;">ai</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/data-analysis/" style="font-size: 20px;">data_analysis</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/ollama/" style="font-size: 10px;">ollama</a> <a href="/tags/pandas/" style="font-size: 16.67px;">pandas</a> <a href="/tags/plot/" style="font-size: 10px;">plot</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a>
+      <a href="/tags/ai/" style="font-size: 10px;">ai</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/data-analysis/" style="font-size: 20px;">data_analysis</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/ollama/" style="font-size: 10px;">ollama</a> <a href="/tags/pandas/" style="font-size: 16.67px;">pandas</a> <a href="/tags/plot/" style="font-size: 10px;">plot</a> <a href="/tags/powerbi/" style="font-size: 10px;">powerbi</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a>
     </div>
   </div>
 
@@ -176,7 +283,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li></ul>
     </div>
   </div>
 
@@ -189,6 +296,14 @@
       <ul>
         
           <li>
+            <a href="/2024/06/16/time-series-analysis-seasonal-pattern/">Data Reveals - Seasonal Patterns in the Equity Market - Is the ‘Sell in May and Go Away, Come Back in September’ Strategy Reliable?</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/02/python-pandas-vs-powerbi/">Python &amp; Pandas VS Power BI for Data Cleaning</a>
+          </li>
+        
+          <li>
             <a href="/2024/05/04/monte-carlo-stock-portfolio/">Monte Carlo Simulation using Python</a>
           </li>
         
@@ -198,14 +313,6 @@
         
           <li>
             <a href="/2024/04/01/local-private-AI/">Your Local Private AI Assistant</a>
-          </li>
-        
-          <li>
-            <a href="/2024/02/18/springboot-jpa-jdbc/">Spring Framework - JPA, Hibernate and JDBC</a>
-          </li>
-        
-          <li>
-            <a href="/2024/01/28/minconda-condavenv/">Miniconda and Conda Virtual Environment</a>
           </li>
         
       </ul>
