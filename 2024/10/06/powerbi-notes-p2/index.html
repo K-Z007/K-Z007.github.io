@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>PowerBI - Notes - Part 2 - Filter Context &amp; Flow | K.Z.&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="This post is trying to explain the concepts of Filter Context and Flow. Flow of Filter Context The flow of filter context describes how filters are applied and propagate through relationships in a dat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PowerBI - Notes - Part 2 - Filter Context &amp; Flow">
+<meta property="og:url" content="https://k-z007.github.io/2024/10/06/powerbi-notes-p2/index.html">
+<meta property="og:site_name" content="K.Z.&#39;s Blog">
+<meta property="og:description" content="This post is trying to explain the concepts of Filter Context and Flow. Flow of Filter Context The flow of filter context describes how filters are applied and propagate through relationships in a dat">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://k-z007.github.io/2024/10/06/powerbi-notes-p2/Model_p1.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/10/06/powerbi-notes-p2/Model_p2.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/10/06/powerbi-notes-p2/Model_p3.JPG">
+<meta property="article:published_time" content="2024-10-06T05:50:02.000Z">
+<meta property="article:modified_time" content="2024-10-09T01:39:56.006Z">
+<meta property="article:author" content="K.Z.">
+<meta property="article:tag" content="data_analysis">
+<meta property="article:tag" content="powerbi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://k-z007.github.io/2024/10/06/powerbi-notes-p2/Model_p1.JPG">
+  
+    <link rel="alternate" href="/atom.xml" title="K.Z.'s Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">K.Z.&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://k-z007.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-powerbi-notes-p2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/10/06/powerbi-notes-p2/" class="article-date">
+  <time class="dt-published" datetime="2024-10-06T05:50:02.000Z" itemprop="datePublished">2024-10-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      PowerBI - Notes - Part 2 - Filter Context &amp; Flow
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>This post is trying to explain the concepts of Filter Context and Flow.</p>
+<h3>Flow of Filter Context</h3>
+The flow of filter context describes how filters are applied and propagate through relationships in a data model. When a filter is applied to one table, it can affect other tables through established relationships, based on the direction and type of relationship (one-to-many, many-to-one, bidirectional).
+
+
+<p>S1 - Understanding the following models’ flow of relationships:</p>
+<pre><code>1.The flow direciton from the one side (1) of the relationship to the many side (*).
+2.The following Red arrows show the filter direction, when filter a table that filter context is passed to 
+any related &quot;downstream&quot; tables, following the arrow&#39;s direction. 
+3.Filter context CANNOT flow &quot;upstream&quot;.
+</code></pre>
+<p><img src="/2024/10/06/powerbi-notes-p2/Model_p1.JPG"></p>
+<p>Using the following two tables, we can create a summarized table. For example, we aim to generate summarized sales data of products for each continent, categorized by color.    </p>
+<span id="more"></span>
+
+<p><strong>Example of invalide Flow of Filter Context which produces incorrect result</strong>:</p>
+<p>S2 - If valiate this relationships, then the following metrix tables are not correct, eventually you would result in repeated grant sum number for each continent. </p>
+<p><i>The reason for this error lies in the incorrect filter flow among the “Territory Lookup”, “Sales Data”, and “Product Lookup” tables. Please refer to the above chart (models’ flow of relationships) to see that the filter flow can only move downstream from “Territory Lookup” to “Sales Data”. It cannot move upstream to “Product Lookup” via “Sales Data,” as the filter flow direction (the dark arrow) is reversed in this example, even though those tables have a connected relationship.</i></p>
+<p><i>Specifically, the lookup values (filter values) are “Rows” from the “Continent” column of the “Territory Lookup” table and “Columns” from the “ProductColor” column of the “Product Lookup” table. However, the values also derive from the count of “ProductKey” in the “Product Lookup” table. This filter flow is incorrect because the filter context can only follow the downstream direction from the “Territory Lookup” table to the “Sales Data” table. It cannot pass upstream to the “Product Lookup” table, as illustrated in the modeling chart</i></p>
+<p><img src="/2024/10/06/powerbi-notes-p2/Model_p2.JPG"></p>
+<p><strong>Example of valide Flow of Filter Context to produce correct result</strong>:</p>
+<p>S3 - The following metrix table is correct which follows the correct flow of filter context:</p>
+<p><i>The reason this is correct is due to the fact that the lookup values (filter values) are “Rows” from the “Continent” column of the “Territory Lookup” table and “Columns” from the “ProductColor” column of the “Product Lookup” table. The values are derived from the count of “ProductKey” in the “Sales Data” table. This filter flow is correct because the filter context follows two downstream directions: one from the “Territory Lookup” table to the “Sales Data” table and the other from the “Product Lookup” table to the “Sales Data” table, as illustrated in the first modeling chart.</i></p>
+<p><img src="/2024/10/06/powerbi-notes-p2/Model_p3.JPG"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://k-z007.github.io/2024/10/06/powerbi-notes-p2/" data-id="cm217desv000jjwjf51g8187f" data-title="PowerBI - Notes - Part 2 - Filter Context &amp; Flow" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/powerbi/" rel="tag">powerbi</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/09/29/powerbi-notes-p1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">PowerBI - Notes - Part 1</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ai/" rel="tag">ai</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpa/" rel="tag">jpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matplotlib/" rel="tag">matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ollama/" rel="tag">ollama</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plot/" rel="tag">plot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/powerbi/" rel="tag">powerbi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ai/" style="font-size: 10px;">ai</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/data-analysis/" style="font-size: 20px;">data_analysis</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/ollama/" style="font-size: 10px;">ollama</a> <a href="/tags/pandas/" style="font-size: 17.5px;">pandas</a> <a href="/tags/plot/" style="font-size: 10px;">plot</a> <a href="/tags/powerbi/" style="font-size: 12.5px;">powerbi</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/10/06/powerbi-notes-p2/">PowerBI - Notes - Part 2 - Filter Context &amp; Flow</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/29/powerbi-notes-p1/">PowerBI - Notes - Part 1</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/16/time-series-analysis-seasonal-pattern/">Data Reveals - Seasonal Patterns in the Equity Market - Is the ‘Sell in May and Go Away, Come Back in September’ Strategy Reliable?</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/02/python-pandas-vs-powerbi/">Python &amp; Pandas VS Power BI for Data Cleaning</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/04/monte-carlo-stock-portfolio/">Monte Carlo Simulation using Python</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 K.Z.<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

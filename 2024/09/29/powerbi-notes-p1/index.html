@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>PowerBI - Notes - Part 1 | K.Z.&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="This post contains useful notes for using PowerBI Desktop. I’ve compiled numerous helpful tips for future reference on how to query and transform data. Some useful methods for data query and transform">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PowerBI - Notes - Part 1">
+<meta property="og:url" content="https://k-z007.github.io/2024/09/29/powerbi-notes-p1/index.html">
+<meta property="og:site_name" content="K.Z.&#39;s Blog">
+<meta property="og:description" content="This post contains useful notes for using PowerBI Desktop. I’ve compiled numerous helpful tips for future reference on how to query and transform data. Some useful methods for data query and transform">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://k-z007.github.io/2024/09/29/powerbi-notes-p1/Query-list-of-dates-s1.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/09/29/powerbi-notes-p1/Query-list-of-dates-s2.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/09/29/powerbi-notes-p1/Query-list-of-dates-s3.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/09/29/powerbi-notes-p1/code-start-of-week.JPG">
+<meta property="article:published_time" content="2024-09-29T04:38:02.000Z">
+<meta property="article:modified_time" content="2024-10-09T01:37:41.314Z">
+<meta property="article:author" content="K.Z.">
+<meta property="article:tag" content="data_analysis">
+<meta property="article:tag" content="powerbi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://k-z007.github.io/2024/09/29/powerbi-notes-p1/Query-list-of-dates-s1.JPG">
+  
+    <link rel="alternate" href="/atom.xml" title="K.Z.'s Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">K.Z.&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://k-z007.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-powerbi-notes-p1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/09/29/powerbi-notes-p1/" class="article-date">
+  <time class="dt-published" datetime="2024-09-29T04:38:02.000Z" itemprop="datePublished">2024-09-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      PowerBI - Notes - Part 1
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>This post contains useful notes for using PowerBI Desktop. I’ve compiled numerous helpful tips for future reference on how to query and transform data.</p>
+<h3>Some useful methods for data query and transformation</h3>
+
+<p><strong>- M code to generate a list of dates in the Query Editor</strong>:</p>
+<p>S1 - Click following “Blank Query” to create a new Query:</p>
+<p><img src="/2024/09/29/powerbi-notes-p1/Query-list-of-dates-s1.JPG"></p>
+<p>S2 - Click following “Advanced Editor” to bring up the Editor Window:</p>
+<p><img src="/2024/09/29/powerbi-notes-p1/Query-list-of-dates-s2.JPG"></p>
+<p>S3 - Following code would generate the table of list of dates starting from 1 Jan 2023:</p>
+<p><img src="/2024/09/29/powerbi-notes-p1/Query-list-of-dates-s3.JPG"></p>
+<p>Code –&gt;&gt;: </p>
+<span id="more"></span>
+
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Power Query M code to generate a list of dates from 1st January, 2024,to the current date</span></span><br><span class="line"><span class="keyword">let</span></span><br><span class="line">    StartDate = <span class="meta">#date(2024, 1, 1),</span></span><br><span class="line">    EndDate = Date.From(DateTime.LocalNow()),</span><br><span class="line">    DateList = List.Dates(StartDate, Duration.Days(EndDate - StartDate) + <span class="number">1</span>, <span class="meta">#duration(1, 0, 0, 0)),</span></span><br><span class="line">    DateTable = Table.FromList(DateList, Splitter.SplitByNothing(), &#123;<span class="string">&quot;Date&quot;</span>&#125;)</span><br><span class="line"><span class="keyword">in</span></span><br><span class="line">    DateTable</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>- Query operation regarding Date and DateTime</strong>:</p>
+<p><img src="/2024/09/29/powerbi-notes-p1/code-start-of-week.JPG"></p>
+<p>Code –&gt;&gt;:</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The following ‘M’ code adds a new column based on the existing [Date] column to determine the “Start of Week” date. Note that the second parameter, ‘Day.Monday’, specifies that the week starts on Monday, default is starting on Sunday.</span></span><br><span class="line">= Table.AddColumn(<span class="meta">#&quot;Inserted Day Name&quot;, &quot;Start of Week&quot;, each Date.StartOfWeek([Date], Day.Monday), type date)</span></span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://k-z007.github.io/2024/09/29/powerbi-notes-p1/" data-id="cm217desu000hjwjf0vq96sq1" data-title="PowerBI - Notes - Part 1" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/powerbi/" rel="tag">powerbi</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/10/06/powerbi-notes-p2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          PowerBI - Notes - Part 2 - Filter Context &amp; Flow
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/06/16/time-series-analysis-seasonal-pattern/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Data Reveals - Seasonal Patterns in the Equity Market - Is the ‘Sell in May and Go Away, Come Back in September’ Strategy Reliable?</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ai/" rel="tag">ai</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpa/" rel="tag">jpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matplotlib/" rel="tag">matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ollama/" rel="tag">ollama</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plot/" rel="tag">plot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/powerbi/" rel="tag">powerbi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ai/" style="font-size: 10px;">ai</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/data-analysis/" style="font-size: 20px;">data_analysis</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/ollama/" style="font-size: 10px;">ollama</a> <a href="/tags/pandas/" style="font-size: 17.5px;">pandas</a> <a href="/tags/plot/" style="font-size: 10px;">plot</a> <a href="/tags/powerbi/" style="font-size: 12.5px;">powerbi</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/10/06/powerbi-notes-p2/">PowerBI - Notes - Part 2 - Filter Context &amp; Flow</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/29/powerbi-notes-p1/">PowerBI - Notes - Part 1</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/16/time-series-analysis-seasonal-pattern/">Data Reveals - Seasonal Patterns in the Equity Market - Is the ‘Sell in May and Go Away, Come Back in September’ Strategy Reliable?</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/02/python-pandas-vs-powerbi/">Python &amp; Pandas VS Power BI for Data Cleaning</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/04/monte-carlo-stock-portfolio/">Monte Carlo Simulation using Python</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 K.Z.<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
