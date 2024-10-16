@@ -16,8 +16,10 @@
 <meta property="og:image" content="https://k-z007.github.io/2024/10/06/powerbi-notes-p2/Model_p1.JPG">
 <meta property="og:image" content="https://k-z007.github.io/2024/10/06/powerbi-notes-p2/Model_p2.JPG">
 <meta property="og:image" content="https://k-z007.github.io/2024/10/06/powerbi-notes-p2/Model_p3.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/10/06/powerbi-notes-p2/Model_p8.JPG">
+<meta property="og:image" content="https://k-z007.github.io/2024/10/06/powerbi-notes-p2/Model_p4.JPG">
 <meta property="article:published_time" content="2024-10-06T05:50:02.000Z">
-<meta property="article:modified_time" content="2024-10-09T01:39:56.006Z">
+<meta property="article:modified_time" content="2024-10-16T03:50:47.295Z">
 <meta property="article:author" content="K.Z.">
 <meta property="article:tag" content="data_analysis">
 <meta property="article:tag" content="powerbi">
@@ -125,11 +127,23 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
 <p>S3 - The following metrix table is correct which follows the correct flow of filter context:</p>
 <p><i>The reason this is correct is due to the fact that the lookup values (filter values) are “Rows” from the “Continent” column of the “Territory Lookup” table and “Columns” from the “ProductColor” column of the “Product Lookup” table. The values are derived from the count of “ProductKey” in the “Sales Data” table. This filter flow is correct because the filter context follows two downstream directions: one from the “Territory Lookup” table to the “Sales Data” table and the other from the “Product Lookup” table to the “Sales Data” table, as illustrated in the first modeling chart.</i></p>
 <p><img src="/2024/10/06/powerbi-notes-p2/Model_p3.JPG"></p>
+<p><strong>However the above issue in Example 1 (of invalide Flow of Filter Context) can be resloved by enabling bidirectional cross-filter (shown in following image), which however should be used with caution.</strong>:</p>
+<p><img src="/2024/10/06/powerbi-notes-p2/Model_p8.JPG"></p>
+<p>Bidirectional filtering is powerful, but it can introduce complexity in your data model. This could lead to performance issues, especially with large datasets, due to more intensive calculations. It can also make the model harder to understand and debug if there are issues with the filtering logic. Thus, try avoid bidirectional as much as possible.</p>
+<h3>Best Practice regarding keys in the table</h3>
+
+<p><strong>In addition, it is always a good idea to hide the foreign keys in the fact tables and use only primary keys in the lookup (Dimension) tables to query the data.</strong>:</p>
+<p>Reasons:</p>
+<p>1.Cleaner Data Model: It simplifies the data model, making it easier to read and understand.</p>
+<p>2.Prevents Confusion: Users won’t mistakenly use foreign keys in their analyses, which could lead to incorrect results.</p>
+<p>3.Focus on Measures: Keeps users focused on the measures and attributes that are meant for reporting and analysis.</p>
+<p>Overall, it makes the data model more intuitive and less prone to user errors. </p>
+<p>Example:<br><img src="/2024/10/06/powerbi-notes-p2/Model_p4.JPG"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/10/06/powerbi-notes-p2/" data-id="cm217desv000jjwjf51g8187f" data-title="PowerBI - Notes - Part 2 - Filter Context &amp; Flow" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/10/06/powerbi-notes-p2/" data-id="cm2bsz9zq000jcsjf9oxy5us7" data-title="PowerBI - Notes - Part 2 - Filter Context &amp; Flow" class="article-share-link">Share</a>
       
       
       
@@ -140,6 +154,15 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
   
     
 <nav id="article-nav">
+  
+    <a href="/2024/10/16/powerbi-notes-p3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          PowerBI - Notes - Part 3 - DAX Code
+        
+      </div>
+    </a>
   
   
     <a href="/2024/09/29/powerbi-notes-p1/" id="article-nav-older" class="article-nav-link-wrap">
@@ -164,7 +187,7 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ai/" rel="tag">ai</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpa/" rel="tag">jpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matplotlib/" rel="tag">matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ollama/" rel="tag">ollama</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plot/" rel="tag">plot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/powerbi/" rel="tag">powerbi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DAX/" rel="tag">DAX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ai/" rel="tag">ai</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpa/" rel="tag">jpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matplotlib/" rel="tag">matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ollama/" rel="tag">ollama</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plot/" rel="tag">plot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/powerbi/" rel="tag">powerbi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
     </div>
   </div>
 
@@ -174,7 +197,7 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ai/" style="font-size: 10px;">ai</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/data-analysis/" style="font-size: 20px;">data_analysis</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/ollama/" style="font-size: 10px;">ollama</a> <a href="/tags/pandas/" style="font-size: 17.5px;">pandas</a> <a href="/tags/plot/" style="font-size: 10px;">plot</a> <a href="/tags/powerbi/" style="font-size: 12.5px;">powerbi</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a>
+      <a href="/tags/DAX/" style="font-size: 10px;">DAX</a> <a href="/tags/ai/" style="font-size: 10px;">ai</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/data-analysis/" style="font-size: 20px;">data_analysis</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/ollama/" style="font-size: 10px;">ollama</a> <a href="/tags/pandas/" style="font-size: 17.5px;">pandas</a> <a href="/tags/plot/" style="font-size: 10px;">plot</a> <a href="/tags/powerbi/" style="font-size: 12.5px;">powerbi</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a>
     </div>
   </div>
 
@@ -196,6 +219,10 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
       <ul>
         
           <li>
+            <a href="/2024/10/16/powerbi-notes-p3/">PowerBI - Notes - Part 3 - DAX Code</a>
+          </li>
+        
+          <li>
             <a href="/2024/10/06/powerbi-notes-p2/">PowerBI - Notes - Part 2 - Filter Context &amp; Flow</a>
           </li>
         
@@ -209,10 +236,6 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
         
           <li>
             <a href="/2024/06/02/python-pandas-vs-powerbi/">Python &amp; Pandas VS Power BI for Data Cleaning</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/04/monte-carlo-stock-portfolio/">Monte Carlo Simulation using Python</a>
           </li>
         
       </ul>

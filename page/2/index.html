@@ -71,6 +71,57 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-pandas-useful-notes-p3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/10/15/pandas-useful-notes-p3/" class="article-date">
+  <time class="dt-published" datetime="2023-10-15T09:00:08.000Z" itemprop="datePublished">2023-10-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/10/15/pandas-useful-notes-p3/">Data Analysis Note - Pandas Part 4 - Join Tables</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3>The most commonly used methods for working with multiple tables</h3>
+
+
+<p><strong>1. Concating series and dataframes:</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@concat</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># concat both columns into 1 column (1 series)</span></span><br><span class="line">pd.concat([column1, column2])   </span><br><span class="line"></span><br><span class="line"><span class="comment"># concat the column by column (series) to form a dataframe and using same index to match each row by row.</span></span><br><span class="line">pd.concat([column1, column2], axis=<span class="number">1</span>)     <span class="comment"># axis=1 default is 0;</span></span><br><span class="line"></span><br><span class="line">pd.concat([df,df2], ignore_index=<span class="literal">True</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment"># If two dfs have different columns, then using join=&#x27;inner&#x27; would only join their mutual columns;</span></span><br><span class="line">pd.concat([df1, df2], sort=<span class="literal">True</span>, ignore_index=<span class="literal">True</span>,  join=<span class="string">&#x27;inner&#x27;</span>,)   <span class="comment"># sort=True is to order the column names</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Keys and then original indexes of the df would togeter create a multi-index dataframe;</span></span><br><span class="line">pd.concat([df1, df2], sort=<span class="literal">True</span>, join=<span class="string">&#x27;inner&#x27;</span>, keys=[<span class="string">&#x27;df1&#x27;</span>, <span class="string">&#x27;df2&#x27;</span>]) <span class="comment"># Using keys to give a first level of index</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>2. Merging dataframes &#x2F; tables on left, right, inner, outer joining methods:</strong></p>
+        
+          <p class="article-more-link">
+            <a href="/2023/10/15/pandas-useful-notes-p3/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://k-z007.github.io/2023/10/15/pandas-useful-notes-p3/" data-id="cm2bsz9zn000ecsjf38hi5gcf" data-title="Data Analysis Note - Pandas Part 4 - Join Tables" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-pandas-useful-notes-advanced" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/08/13/pandas-useful-notes-advanced/" class="article-date">
@@ -106,7 +157,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2023/08/13/pandas-useful-notes-advanced/" data-id="cm217dess000ejwjfba3cbp7q" data-title="Data Analysis Note - Pandas Part 3 - Groupby" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2023/08/13/pandas-useful-notes-advanced/" data-id="cm2bsz9zk0008csjf4h94hsjh" data-title="Data Analysis Note - Pandas Part 3 - Groupby" class="article-share-link">Share</a>
       
       
       
@@ -158,7 +209,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2023/07/29/matplotlib-notes/" data-id="cm217desn0006jwjf1j8w16g8" data-title="Matplotlib Notes" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2023/07/29/matplotlib-notes/" data-id="cm2bsz9zm000bcsjf6d5ud49m" data-title="Matplotlib Notes" class="article-share-link">Share</a>
       
       
       
@@ -210,7 +261,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2023/07/16/pandas-useful-notes-p2/" data-id="cm217desq000bjwjf1swq0gnl" data-title="Data Analysis Note - Pandas Part 2 - Series" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2023/07/16/pandas-useful-notes-p2/" data-id="cm2bsz9zl000acsjf3858f60m" data-title="Data Analysis Note - Pandas Part 2 - Series" class="article-share-link">Share</a>
       
       
       
@@ -265,7 +316,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2023/06/03/panda-useful-notes-p1/" data-id="cm217desq000ajwjf53bs0765" data-title="Data Analysis Note - Pandas Part 1" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2023/06/03/panda-useful-notes-p1/" data-id="cm2bsz9zn000dcsjf6vno8yok" data-title="Data Analysis Note - Pandas Part 1" class="article-share-link">Share</a>
       
       
       
@@ -333,7 +384,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2023/01/15/python-virtual-evn/" data-id="cm217desx000ojwjf64w5ecqd" data-title="Python Virtual Environment" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2023/01/15/python-virtual-evn/" data-id="cm2bsza02001pcsjf2wfq18ca" data-title="Python Virtual Environment" class="article-share-link">Share</a>
       
       
       
@@ -365,7 +416,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ai/" rel="tag">ai</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpa/" rel="tag">jpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matplotlib/" rel="tag">matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ollama/" rel="tag">ollama</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plot/" rel="tag">plot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/powerbi/" rel="tag">powerbi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DAX/" rel="tag">DAX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ai/" rel="tag">ai</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpa/" rel="tag">jpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matplotlib/" rel="tag">matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ollama/" rel="tag">ollama</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plot/" rel="tag">plot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/powerbi/" rel="tag">powerbi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
     </div>
   </div>
 
@@ -375,7 +426,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ai/" style="font-size: 10px;">ai</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/data-analysis/" style="font-size: 20px;">data_analysis</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/ollama/" style="font-size: 10px;">ollama</a> <a href="/tags/pandas/" style="font-size: 17.5px;">pandas</a> <a href="/tags/plot/" style="font-size: 10px;">plot</a> <a href="/tags/powerbi/" style="font-size: 12.5px;">powerbi</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a>
+      <a href="/tags/DAX/" style="font-size: 10px;">DAX</a> <a href="/tags/ai/" style="font-size: 10px;">ai</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/data-analysis/" style="font-size: 20px;">data_analysis</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/ollama/" style="font-size: 10px;">ollama</a> <a href="/tags/pandas/" style="font-size: 17.5px;">pandas</a> <a href="/tags/plot/" style="font-size: 10px;">plot</a> <a href="/tags/powerbi/" style="font-size: 12.5px;">powerbi</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a>
     </div>
   </div>
 
@@ -397,6 +448,10 @@
       <ul>
         
           <li>
+            <a href="/2024/10/16/powerbi-notes-p3/">PowerBI - Notes - Part 3 - DAX Code</a>
+          </li>
+        
+          <li>
             <a href="/2024/10/06/powerbi-notes-p2/">PowerBI - Notes - Part 2 - Filter Context &amp; Flow</a>
           </li>
         
@@ -410,10 +465,6 @@
         
           <li>
             <a href="/2024/06/02/python-pandas-vs-powerbi/">Python &amp; Pandas VS Power BI for Data Cleaning</a>
-          </li>
-        
-          <li>
-            <a href="/2024/05/04/monte-carlo-stock-portfolio/">Monte Carlo Simulation using Python</a>
           </li>
         
       </ul>

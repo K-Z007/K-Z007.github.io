@@ -4,26 +4,15 @@
   <meta charset="utf-8">
   
   
-  <title>Miniconda and Conda Virtual Environment | K.Z.&#39;s Blog</title>
+  <title>Tag: DAX | K.Z.&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="This post covers miniconda, including its installation and managing conda virtual environments. After using the Anaconda suite for quite some time, I found it cumbersome, with many unused tools, a lar">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Miniconda and Conda Virtual Environment">
-<meta property="og:url" content="https://k-z007.github.io/2024/01/28/minconda-condavenv/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="K.Z.&#39;s Blog">
+<meta property="og:url" content="https://k-z007.github.io/tags/DAX/index.html">
 <meta property="og:site_name" content="K.Z.&#39;s Blog">
-<meta property="og:description" content="This post covers miniconda, including its installation and managing conda virtual environments. After using the Anaconda suite for quite some time, I found it cumbersome, with many unused tools, a lar">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://k-z007.github.io/2024/01/28/minconda-condavenv/conda_1.JPG">
-<meta property="og:image" content="https://k-z007.github.io/2024/01/28/minconda-condavenv/conda_2.JPG">
-<meta property="og:image" content="https://k-z007.github.io/2024/01/28/minconda-condavenv/conda_3.JPG">
-<meta property="og:image" content="https://k-z007.github.io/2024/01/28/minconda-condavenv/conda_4.JPG">
-<meta property="article:published_time" content="2024-01-28T03:01:08.000Z">
-<meta property="article:modified_time" content="2024-05-10T04:23:41.102Z">
 <meta property="article:author" content="K.Z.">
-<meta property="article:tag" content="data_analysis">
-<meta property="article:tag" content="conda">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://k-z007.github.io/2024/01/28/minconda-condavenv/conda_1.JPG">
   
     <link rel="alternate" href="/atom.xml" title="K.Z.'s Blog" type="application/atom+xml">
   
@@ -80,86 +69,39 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-minconda-condavenv" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/01/28/minconda-condavenv/" class="article-date">
-  <time class="dt-published" datetime="2024-01-28T03:01:08.000Z" itemprop="datePublished">2024-01-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="p-name article-title" itemprop="headline name">
-      Miniconda and Conda Virtual Environment
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2024" class="archive-year">2024</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2024/10/16/powerbi-notes-p3/" class="archive-article-date">
+  <time class="dt-published" datetime="2024-10-16T07:50:02.000Z" itemprop="datePublished">Oct 16</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2024/10/16/powerbi-notes-p3/">PowerBI - Notes - Part 3 - DAX Code</a>
     </h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>This post covers miniconda, including its installation and managing conda virtual environments. After using the Anaconda suite for quite some time, I found it cumbersome, with many unused tools, a large number of default packages, and a substantial volume size. Consequently, I decided to uninstall Anaconda and switch to the more lightweight miniconda distribution.</p>
-<p>For miniconda installation link:  <a target="_blank" rel="noopener" href="https://docs.anaconda.com/free/miniconda/miniconda-install/">miniconda</a>.</p>
-<h3>Creating and Managing Virtual Environment</h3>
-
-
-<p><span class="large-text">1. Open Anaconda Terminal</span><br><span class="large-text">2. Create new virtual environment and install specific python verison<br>into this virtual environment</span></p>
-<p><img src="/2024/01/28/minconda-condavenv/conda_1.JPG"></p>
-<p><span class="large-text">3. Typing “conda env list” to check the virtual environments just created</span></p>
-<p><img src="/2024/01/28/minconda-condavenv/conda_2.JPG"></p>
-<span id="more"></span>
-<p><span class="large-text">4. Switch or Activate the virtual environment just create</span></p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; conda activate myNewVitrualEnv</span><br></pre></td></tr></table></figure>
-
-<p>Then you will see the front in () changed to your just created virtual environment name</p>
-<p><img src="/2024/01/28/minconda-condavenv/conda_3.JPG"></p>
-<p><span class="large-text">5. Then install the package you needed to work in the project</span></p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; conda install jupyter pandas numpy</span><br></pre></td></tr></table></figure>
-
-<p><span class="large-text">6. Then cd into any folder you want project to be placed at To launch Jupyter Notebook</span></p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; (myNewVitrualEnv) D:\Dataproject\financial_data_proj&gt;jupyter notebook</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2024/01/28/minconda-condavenv/conda_4.JPG"></p>
-<p><span class="large-text">7. To remove a virtual environment:</span></p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; (base) conda remove --name myNewVitrualEnv --<span class="built_in">all</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/01/28/minconda-condavenv/" data-id="cm2bsz9zj0007csjf23wpfwe4" data-title="Miniconda and Conda Virtual Environment" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/conda/" rel="tag">conda</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2024/02/18/springboot-jpa-jdbc/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Spring Framework - JPA, Hibernate and JDBC
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2023/10/15/pandas-useful-notes-p3/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Data Analysis Note - Pandas Part 4 - Join Tables</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
 
 </section>
