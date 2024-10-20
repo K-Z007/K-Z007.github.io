@@ -113,41 +113,15 @@ DAX, or Data Analysis Expressions, is a collection of functions, operators, and 
 </ol>
 
 <h4>General_Method:</h4>
-
-<h5>1.adding a new empty table using DAX:</h5>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Meature Table = &#123;<span class="string">&quot;&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
-
-<br />
-<h5>2.Performs division and returns the alternate result (or blank) if DIV/0</h5>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=DIVIDE(Numerator, Denominator, [AlternateResult])</span><br></pre></td></tr></table></figure>
-
-<br />
-<h5>3.check value in a list:</h5>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Weekend = IF(<span class="string">&#x27;Calendar Lookup&#x27;</span>[WeekDay] IN &#123;<span class="number">6</span>,<span class="number">7</span>&#125;, <span class="string">&quot;Weekend&quot;</span>, <span class="string">&quot;Weekday&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-
-<br />
-<h5>4.RELATED()</h5>
-The RELATED function in DAX is used to fetch a related value from another table. It relies on existing relationships between tables to bring in data from a related table into your current context.
-
-<p>It can be used to extract other field from another linked table (with many-to-one relatinship) in “many”-side table to get a related column in “one”-side table (it’s good for debugging), but may increase the size of your file. This can go as far as the linked relatinship exists. Please see following example:</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ProductCategory = RELATED(<span class="string">&#x27;Product Categories Lookup&#x27;</span>[CategoryName]) </span><br></pre></td></tr></table></figure>
-
-<br />
-Adding a new column in "Sales Data" table by bringing the corresponding column ("CategoryName") in "Product Categories Lookup" table.
-
-<p><img src="/2024/10/16/powerbi-notes-p3/Model_p1.JPG"></p>
-<p>The following chart shows the relationship is passed from “Product Categories Lookup” table to “Product Subcategories Lookup” table and then through the “Product Lookup” table, finally to the “Sales Data” table. That the RELATED() method can directly bring in the column (“CategoryName”) in “Product Categories Lookup” table to “Sales Data” table even there is no directly linked relationship between “Sales Data” table and “Product Categories Lookup” table (as shown in above chart). However this is still can be done due to the indireclty linked relationship via “Product Subcategories Lookup” table and Product Lookup” table:</p>
-<p><img src="/2024/10/16/powerbi-notes-p3/Model_p2.JPG"></p>
-<br />
-<h5>5.CALCUlATE()</h5>
-Further to force powerbi to use customized Filter condition defined in this funciton to get corresponding filtered measure values；it Modifies and overrules any competing filter context;
-
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CALCUlATE(<span class="params">measure/DAX function, filter1, filter2,...</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#It allows to overrule existing report filters or filter context and &#x27;force&#x27; new filter context;</span></span><br><span class="line"><span class="comment">#To furhter filter out from [Total Sale Orders] measure values to get the filtered Sale Orders values which were placed on Weekend:</span></span><br><span class="line">Weekend Sale Orders = CALCULATE([Total Sale Orders], <span class="string">&#x27;Calendar Lookup&#x27;</span>[Weekend] = <span class="string">&quot;Weekend&quot;</span>) </span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2024/10/16/powerbi-notes-p3/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/10/16/powerbi-notes-p3/" data-id="cm2bsz9zs000mcsjfezr1el90" data-title="PowerBI - Notes - Part 3 - DAX Code" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/10/16/powerbi-notes-p3/" data-id="cm2hhxlov000m8ojf0btw0ea2" data-title="PowerBI - Notes - Part 3 - DAX Code" class="article-share-link">Share</a>
       
       
       
@@ -204,7 +178,7 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/10/06/powerbi-notes-p2/" data-id="cm2bsz9zq000jcsjf9oxy5us7" data-title="PowerBI - Notes - Part 2 - Filter Context &amp; Flow" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/10/06/powerbi-notes-p2/" data-id="cm2hhxlou000j8ojffvntdp6i" data-title="PowerBI - Notes - Part 2 - Filter Context &amp; Flow" class="article-share-link">Share</a>
       
       
       
@@ -259,7 +233,7 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/09/29/powerbi-notes-p1/" data-id="cm2bsz9zp000hcsjf6hdvh50i" data-title="PowerBI - Notes - Part 1" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/09/29/powerbi-notes-p1/" data-id="cm2hhxlos000h8ojfapfkb31y" data-title="PowerBI - Notes - Part 1" class="article-share-link">Share</a>
       
       
       
@@ -309,7 +283,7 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/06/16/time-series-analysis-seasonal-pattern/" data-id="cm2bsza03001tcsjf450z92ky" data-title="Data Reveals - Seasonal Patterns in the Equity Market - Is the ‘Sell in May and Go Away, Come Back in September’ Strategy Reliable?" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/06/16/time-series-analysis-seasonal-pattern/" data-id="cm2hhxlp0000v8ojfdob1cp81" data-title="Data Reveals - Seasonal Patterns in the Equity Market - Is the ‘Sell in May and Go Away, Come Back in September’ Strategy Reliable?" class="article-share-link">Share</a>
       
       
       
@@ -364,7 +338,7 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/06/02/python-pandas-vs-powerbi/" data-id="cm2bsza01001ocsjffjns11eo" data-title="Python &amp; Pandas VS Power BI for Data Cleaning" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/06/02/python-pandas-vs-powerbi/" data-id="cm2hhxlox000q8ojfe9evgeio" data-title="Python &amp; Pandas VS Power BI for Data Cleaning" class="article-share-link">Share</a>
       
       
       
@@ -410,7 +384,7 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/05/04/monte-carlo-stock-portfolio/" data-id="cm2bsz9zi0006csjf4015byut" data-title="Monte Carlo Simulation using Python" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/05/04/monte-carlo-stock-portfolio/" data-id="cm2hhxlom00088ojfgoihd2kc" data-title="Monte Carlo Simulation using Python" class="article-share-link">Share</a>
       
       
       
@@ -456,7 +430,7 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/04/21/data-analysis-ivv/" data-id="cm2bsz9zc0001csjfczk4bj91" data-title="Time Series Analysis For IVV.US" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/04/21/data-analysis-ivv/" data-id="cm2hhxloc00018ojf1wkxe9zi" data-title="Time Series Analysis For IVV.US" class="article-share-link">Share</a>
       
       
       
@@ -503,7 +477,7 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/04/01/local-private-AI/" data-id="cm2bsz9zf0003csjf9rmp5ju1" data-title="Your Local Private AI Assistant" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/04/01/local-private-AI/" data-id="cm2hhxlog00038ojfgreoc62v" data-title="Your Local Private AI Assistant" class="article-share-link">Share</a>
       
       
       
@@ -550,7 +524,7 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/02/18/springboot-jpa-jdbc/" data-id="cm2bsza03001rcsjf5qfcg479" data-title="Spring Framework - JPA, Hibernate and JDBC" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/02/18/springboot-jpa-jdbc/" data-id="cm2hhxloz000t8ojfc6re305y" data-title="Spring Framework - JPA, Hibernate and JDBC" class="article-share-link">Share</a>
       
       
       
@@ -603,7 +577,7 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/01/28/minconda-condavenv/" data-id="cm2bsz9zj0007csjf23wpfwe4" data-title="Miniconda and Conda Virtual Environment" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/01/28/minconda-condavenv/" data-id="cm2hhxlol00078ojf0boo2fe9" data-title="Miniconda and Conda Virtual Environment" class="article-share-link">Share</a>
       
       
       

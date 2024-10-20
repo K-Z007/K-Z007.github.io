@@ -16,7 +16,7 @@
 <meta property="og:image" content="https://k-z007.github.io/2024/10/16/powerbi-notes-p3/Model_p1.JPG">
 <meta property="og:image" content="https://k-z007.github.io/2024/10/16/powerbi-notes-p3/Model_p2.JPG">
 <meta property="article:published_time" content="2024-10-16T07:50:02.000Z">
-<meta property="article:modified_time" content="2024-10-16T04:35:32.463Z">
+<meta property="article:modified_time" content="2024-10-18T04:46:48.003Z">
 <meta property="article:author" content="K.Z.">
 <meta property="article:tag" content="data_analysis">
 <meta property="article:tag" content="powerbi">
@@ -122,6 +122,8 @@ DAX, or Data Analysis Expressions, is a collection of functions, operators, and 
 
 <h4>General_Method:</h4>
 
+<span id="more"></span>
+
 <h5>1.adding a new empty table using DAX:</h5>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Meature Table = &#123;<span class="string">&quot;&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
 
@@ -141,6 +143,9 @@ The RELATED function in DAX is used to fetch a related value from another table.
 <p>It can be used to extract other field from another linked table (with many-to-one relatinship) in “many”-side table to get a related column in “one”-side table (it’s good for debugging), but may increase the size of your file. This can go as far as the linked relatinship exists. Please see following example:</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ProductCategory = RELATED(<span class="string">&#x27;Product Categories Lookup&#x27;</span>[CategoryName]) </span><br></pre></td></tr></table></figure>
 
+
+<h6>RELATED() method is also useful in those Iterator (X) Functions such as SUMX, MINX , MAXX , AVERAGEX...</h6>
+
 <br />
 Adding a new column in "Sales Data" table by bringing the corresponding column ("CategoryName") in "Product Categories Lookup" table.
 
@@ -152,10 +157,66 @@ Adding a new column in "Sales Data" table by bringing the corresponding column (
 Further to force powerbi to use customized Filter condition defined in this funciton to get corresponding filtered measure values；it Modifies and overrules any competing filter context;
 
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CALCUlATE(<span class="params">measure/DAX function, filter1, filter2,...</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#It allows to overrule existing report filters or filter context and &#x27;force&#x27; new filter context;</span></span><br><span class="line"><span class="comment">#To furhter filter out from [Total Sale Orders] measure values to get the filtered Sale Orders values which were placed on Weekend:</span></span><br><span class="line">Weekend Sale Orders = CALCULATE([Total Sale Orders], <span class="string">&#x27;Calendar Lookup&#x27;</span>[Weekend] = <span class="string">&quot;Weekend&quot;</span>) </span><br></pre></td></tr></table></figure>
+
+<br />
+<h4> Iterator (X) Functions</h4>
+Loop through each row of a table to apply the the same expressin function first, then apply certain aggregation to the all the results. (has some similarities to the "Apply()" function in Python-Pandas).
+
+<br />
+<h5>6.SUMX()</h5>
+
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SUMX(<span class="params">table, expression</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># in &#x27;Sales Data&#x27; table, for each row (iterating each row), apply the function &#x27;Sales Data&#x27;[OrderQuantity] * RELATED(&#x27;Product Lookup&#x27;[ProductPrice]), then sum all the values from that funciton:</span></span><br><span class="line"></span><br><span class="line">Revenue = SUMX(</span><br><span class="line">    <span class="string">&#x27;Sales Data&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Sales Data&#x27;</span>[OrderQuantity] * </span><br><span class="line">    RELATED(<span class="string">&#x27;Product Lookup&#x27;</span>[ProductPrice])</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<br />
+<h6>NOTE: SUMX() can also be used to get rolling result, detail pls see 9.2 in the below.</h6>
+
+<br />
+<h5>7.DATESYTD()</h5>
+
+<p>Get the Fiscal Year Running Total profit (meaning profit was accumulated up to the Fiscal Year end here use 30th June), and reset in next ficial year (The default year end date is December 31):</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Profit To Fiscal Year End = CALCULATE([Profit], DATESYTD(<span class="string">&#x27;Calendar Lookup&#x27;</span>[Date], <span class="string">&quot;6-30&quot;</span>))</span><br><span class="line"><span class="comment"># seems both date format are working:</span></span><br><span class="line">Profit To Fiscal Year End = CALCULATE([Profit], DATESYTD(<span class="string">&#x27;Calendar Lookup&#x27;</span>[Date], <span class="string">&quot;30-6&quot;</span>))</span><br></pre></td></tr></table></figure>
+<br />
+
+<p>To Quarterly end:</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Profit To Quarter End = CALCULATE([Profit], DATESQTD(<span class="string">&#x27;Calendar Lookup&#x27;</span>[Date]))</span><br></pre></td></tr></table></figure>
+
+<br />
+<h5>8.DATEADD()</h5>
+
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Get date 1 month before of current date: </span></span><br><span class="line">DATEADD(<span class="string">&#x27;Calendar Lookup&#x27;</span>[Date], -<span class="number">1</span>, MONTH)</span><br><span class="line"></span><br><span class="line"><span class="comment">#Get previous month&#x27;s profit from current date: </span></span><br><span class="line">Profit (Provious Month) = CALCULATE([Profit], DATEADD(<span class="string">&#x27;Calendar Lookup&#x27;</span>[Date], -<span class="number">1</span>, MONTH))</span><br></pre></td></tr></table></figure>
+
+
+
+<br />
+<h5>9.1.DATESINPERIOD("dates", "start_date", "number_of_intervals", "interval_type")</h5>
+
+<p>Get 10 days rolling profit:”start_date” is MAX(‘Calendar Lookup’[Date]) and “number_of_intervals” &#x3D; -10, meaning to start from latest date and working backwards and for each interval using the previous 10 days as rolling period, to sum up the value.</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Profit (Rolling <span class="number">10</span> days) = CALCULATE([Profit], DATESINPERIOD(<span class="string">&#x27;Calendar Lookup&#x27;</span>[Date], MAX(<span class="string">&#x27;Calendar Lookup&#x27;</span>[Date]), -<span class="number">10</span>, DAY))</span><br></pre></td></tr></table></figure>
+
+<br />
+<h5>9.2.SUMX("table", "expression") to get rolling result</h5>
+Another way to get rolling profit using Iterate function: following will get the same result as the above function.
+
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Profit (XFunction Rolling <span class="number">10</span> days) = SUMX(DATESINPERIOD(<span class="string">&#x27;Calendar Lookup&#x27;</span>[Date], MAX(<span class="string">&#x27;Calendar Lookup&#x27;</span>[Date]), -<span class="number">10</span>, DAY), [Profit])</span><br></pre></td></tr></table></figure>
+
+<p>Explain: how this is fit the SUMX(“table”, “expression”):</p>
+<p>1.”table” Argument:</p>
+<p>In this case, the “table” argument is provided by:<br>DATESINPERIOD(‘Calendar Lookup’[Date], MAX(‘Calendar Lookup’[Date]), -10, DAY)<br>The DATESINPERIOD function generates a table of dates that represents the last 10 days, counting backward from the maximum date in the current filter context.<br>This table is essentially a list of date values for the last 10 days.</p>
+<p>2.”expression” Argument:</p>
+<p>The “expression” part is [Profit].<br>This expression is evaluated for each row (each date) in the table generated by DATESINPERIOD.<br>Here, [Profit] represents the measure or column that calculates the profit for each specific date.</p>
+<p>3.How SUMX Processes These Arguments:<br>SUMX iterates over each row in the table of dates generated by DATESINPERIOD.<br>For each date in that table, it evaluates the [Profit] expression, summing up the profit values for each of the last 10 days.<br>The result is a single value that represents the total profit over the rolling 10-day period.</p>
+<p>In essence, the function effectively creates (slide) many different 10-day window tables as it evaluates across different dates, with SUMX calculating the profit for each of these sliding windows.</p>
+<br />
+<h5>10.AVERAGEX("table", "expression") to get moving average (rolling average or running average)</h5>
+Using the above same mindset, we can get moving average say 7 days moving average profit:
+
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Profit (Weekly Rolling Avg) = </span><br><span class="line">AVERAGEX (</span><br><span class="line">    DATESINPERIOD ( <span class="string">&#x27;Calendar Lookup&#x27;</span>[Date], MAX (<span class="string">&#x27;Calendar Lookup&#x27;</span>[Date]), -<span class="number">7</span>, DAY ),</span><br><span class="line">    [Profit]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/10/16/powerbi-notes-p3/" data-id="cm2bsz9zs000mcsjfezr1el90" data-title="PowerBI - Notes - Part 3 - DAX Code" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/10/16/powerbi-notes-p3/" data-id="cm2hhxlov000m8ojf0btw0ea2" data-title="PowerBI - Notes - Part 3 - DAX Code" class="article-share-link">Share</a>
       
       
       
