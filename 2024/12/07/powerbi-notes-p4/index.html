@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>PowerBI - Notes - Part 4 - CSV Loading Issue Create Extra Rows | K.Z.&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="How to Fix the Issue of Extra Rows of Bad Data being created When Loading a Folder of CSV Files into Power BI:  Recently, I encountered an issue while working on a data project that involved loading">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PowerBI - Notes - Part 4 - CSV Loading Issue Create Extra Rows">
+<meta property="og:url" content="https://k-z007.github.io/2024/12/07/powerbi-notes-p4/index.html">
+<meta property="og:site_name" content="K.Z.&#39;s Blog">
+<meta property="og:description" content="How to Fix the Issue of Extra Rows of Bad Data being created When Loading a Folder of CSV Files into Power BI:  Recently, I encountered an issue while working on a data project that involved loading">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://k-z007.github.io/2024/12/07/powerbi-notes-p4/p1.jpg">
+<meta property="og:image" content="https://k-z007.github.io/2024/12/07/powerbi-notes-p4/p2.jpg">
+<meta property="og:image" content="https://k-z007.github.io/2024/12/07/powerbi-notes-p4/p3.jpg">
+<meta property="og:image" content="https://k-z007.github.io/2024/12/07/powerbi-notes-p4/p4.jpg">
+<meta property="og:image" content="https://k-z007.github.io/2024/12/07/powerbi-notes-p4/p5.jpg">
+<meta property="og:image" content="https://k-z007.github.io/2024/12/07/powerbi-notes-p4/p6.jpg">
+<meta property="og:image" content="https://k-z007.github.io/2024/12/07/powerbi-notes-p4/p7.jpg">
+<meta property="og:image" content="https://k-z007.github.io/2024/12/07/powerbi-notes-p4/p8.jpg">
+<meta property="og:image" content="https://k-z007.github.io/2024/12/07/powerbi-notes-p4/p9.jpg">
+<meta property="og:image" content="https://k-z007.github.io/2024/12/07/powerbi-notes-p4/p10.jpg">
+<meta property="og:image" content="https://k-z007.github.io/2024/12/07/powerbi-notes-p4/p11.jpg">
+<meta property="article:published_time" content="2024-12-07T04:09:50.000Z">
+<meta property="article:modified_time" content="2024-12-07T05:06:59.208Z">
+<meta property="article:author" content="K.Z.">
+<meta property="article:tag" content="data_analysis">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="pandas">
+<meta property="article:tag" content="powerbi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://k-z007.github.io/2024/12/07/powerbi-notes-p4/p1.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="K.Z.'s Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">K.Z.&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://k-z007.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-powerbi-notes-p4" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/12/07/powerbi-notes-p4/" class="article-date">
+  <time class="dt-published" datetime="2024-12-07T04:09:50.000Z" itemprop="datePublished">2024-12-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      PowerBI - Notes - Part 4 - CSV Loading Issue Create Extra Rows
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <br />
+
+<h2>How to Fix the Issue of Extra Rows of Bad Data being created When Loading a Folder of CSV Files into Power BI:</h2>
+
+<p>Recently, I encountered an issue while working on a data project that involved loading millions of rows of data from a folder of CSV files into Power BI. During the process, I noticed that <b>extra rows, which did not exist in the original files</b>, were being generated. Here are the details (this is a demo project, and all sensitive information has been removed for confidentiality):</p>
+<h4>Testing with a Single CSV File</h4>
+
+<p>To troubleshoot and demonstrate the issue quickly, I started by testing with a single CSV file. Upon loading this file into Power BI, I noticed an error in the “Creation_date” column. The error affected less than 1% of the rows, showing an “Error” message in that column.</p>
+<p>Initially, I assumed it was a common issue with formatting datetime values in Power BI. To resolve it, I attempted the three standard methods for converting the column to a datetime format. However, the error persisted despite these efforts.</p>
+<br />
+
+<p><img src="/2024/12/07/powerbi-notes-p4/p1.jpg"></p>
+<br />
+Then, I filtered the column to display only the rows with "Error," but this didn't provide much insight into the root cause of the issue.
+<br />
+
+<p><img src="/2024/12/07/powerbi-notes-p4/p2.jpg"></p>
+<span id="more"></span>
+
+
+<br />
+Thus, I removed the "Changed Type" step and converted the column to a "Text" data type. This should have resolved the error, but instead, I discovered "Empty" values in the column (as shown below). However, based on the context of this project, there should not be any empty values in the "Creation_date" column—every row is expected to contain a valid date. This inconsistency seemed unusual.
+
+<br />
+To investigate further, I needed to confirm whether there were indeed empty values in the "Creation_date" column. Interestingly, other columns still contained data in rows where the "Creation_date" column was empty, which, based on my intuition, indicated something was not correct.
+
+<br />
+
+<p><img src="/2024/12/07/powerbi-notes-p4/p3.jpg"></p>
+<br />
+
+<p>Because of the massive size of the CSV file, I typically prefer using Python Pandas for a quick check of the values. Pandas is much faster when working with large datasets compared to Power BI or Excel.</p>
+<p>I ran a script in Pandas to verify if there were any empty values in the “Creation_date” column. Here is a screenshot of the code. The first result returned False, indicating that there were no empty values in the column. This outcome directly contradicted the result I observed in Power BI. </p>
+<br />
+
+<p><img src="/2024/12/07/powerbi-notes-p4/p4.jpg"></p>
+<br />
+
+<p>To continue debugging, I used a second Python method to check the total number of rows in the “Creation_date” column by using len(). The result showed that this column contained 20,038 rows in the test CSV file.</p>
+<p>I then returned to Power BI to compare the row count. According to the Column Statistics in Power BI, the “Creation_date” column contained 20,068 rows—30 more than the Python Pandas test results. Given the context of this project, the results from the Python Pandas test were more reliable and consistent, indicating that Power BI was somehow introducing extra rows while loading the CSV file. This strongly suggested an issue with how Power BI handled the CSV file during the loading process, resulting in the creation of additional rows of data in the Query Editor. Clearly, this needed to be resolved. </p>
+<p><img src="/2024/12/07/powerbi-notes-p4/p5.jpg"></p>
+<br />
+
+<p>To dig deeper into the issue, I began by searching online for possible explanations. While I found some discussions about similar issues, there were no definitive solutions or detailed explanations—not even from our all-powerful AI, ChatGPT! After further manual exploration in various technical forums, I came across a mention of “Line Breaks” in CSV files as a potential cause. Although the explanation was brief, it sparked an idea.</p>
+<p>Even though rows in the “Creation_date” column showed empty values, the corresponding rows in other columns still contained data, which I realized could be leveraged to debug the issue further.</p>
+<p>I copied the values from Power BI and analysed them in the Python Pandas test project. Upon further inspection, I discovered that one column contained a long string of text value with a sentence that included a “line break” within it.</p>
+<p>To understand this issue better, I searched more about this topic using AI tools, and here is the explanation I found:</p>
+<p><b>Quoted line breaks</b> occur when a line break (a new line) is included within a quoted field in a CSV file. This can happen when the data within a field spans multiple lines but is enclosed in quotation marks. In following example, the “Notes” field for John Doe contains a line break within the quoted text.<br><br /></p>
+<p><img src="/2024/12/07/powerbi-notes-p4/p6.jpg"></p>
+<br />
+With the right direction and some additional searching, I found the solution. When Power BI or other data processing tools encounter line breaks within text values, they might misinterpret these as the start of a new row, resulting in extra rows being added to the dataset.
+
+<p>To resolve this issue in Power BI, I needed to modify the settings in the “Source” step. By clicking on the “Source” step, a popup table appeared, where I manually selected the option “Ignore quoted line breaks.” This setting ensures that line breaks within quoted text are treated as part of the same value, rather than as new rows. By default, Power BI applies the setting “Apply all line breaks,” which caused the problem in this case. (see following screenshot).<br><br /></p>
+<p><img src="/2024/12/07/powerbi-notes-p4/p7.jpg"></p>
+<br />
+
+<p>After applying this fix, the issue was resolved, and the dataset loaded correctly without any extra rows.</p>
+<p>Once the configuration was corrected, I reapplied the “DateTime” formatting to the “Creation_date” column. This time, there were no errors, and the total row count was accurately displayed as 20,023, matching the expected result shown in Python Pandas test project.</p>
+<p>This confirmed that the issue had been fully resolved, ensuring both data integrity and proper formatting in Power BI.<br><br /></p>
+<p><img src="/2024/12/07/powerbi-notes-p4/p8.jpg"></p>
+<br />
+
+<p>However, the above solution was applied to just one test file. I had hundreds of similar CSV files from the past several months that required analysis. To address the issue for the entire folder of CSV files, I used the following approach:</p>
+<p>The root cause of the issue is that some fields in the CSV files contain data spanning multiple lines but are enclosed in quotation marks. Here is how I fixed the issue when loading a folder of CSV files:</p>
+<ol>
+<li><p><b>Load the Folder of CSV Files</b><br>(Since this is a common method anyone can found in Youtube, I won’t re-explain the steps here.)</p>
+</li>
+<li><p><b>Transform the Sample File</b><br>On the left-hand side of the Power BI interface, click “Transform Sample File.” This step ensures that changes made to the sample file are automatically applied to all the files in the folder</p>
+<br /></li>
+</ol>
+<p><img src="/2024/12/07/powerbi-notes-p4/p9.jpg"></p>
+<br />
+
+<ol start="3">
+<li><b>Then click this “gear” icon to config the “Source”:</b></li>
+</ol>
+<br />
+
+<p><img src="/2024/12/07/powerbi-notes-p4/p10.jpg"></p>
+<br />
+
+<ol start="4">
+<li><b>Choose the following option to “Ignore quoted line breaks”, back to the table, this is already fixed now. </b></li>
+</ol>
+<br />
+
+<p><img src="/2024/12/07/powerbi-notes-p4/p11.jpg"></p>
+<br />
+
+<p>To summary, using different data tools enhances both efficiency and accuracy by allowing you to leverage the strengths of each tool. Tools like Python for quick data manipulation, Power BI for visualization, and Excel for detailed analysis enable faster processing, reduce human error, and improve the reliability of results. By choosing the right tool for each task, you can optimize workflows and achieve more precise outcomes.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://k-z007.github.io/2024/12/07/powerbi-notes-p4/" data-id="cm4dprg2h000opsjf2rtqe5us" data-title="PowerBI - Notes - Part 4 - CSV Loading Issue Create Extra Rows" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/powerbi/" rel="tag">powerbi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/10/16/powerbi-notes-p3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">PowerBI - Notes - Part 3 - DAX Code</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DAX/" rel="tag">DAX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ai/" rel="tag">ai</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conda/" rel="tag">conda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jpa/" rel="tag">jpa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matplotlib/" rel="tag">matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ollama/" rel="tag">ollama</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plot/" rel="tag">plot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/powerbi/" rel="tag">powerbi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/DAX/" style="font-size: 10px;">DAX</a> <a href="/tags/ai/" style="font-size: 10px;">ai</a> <a href="/tags/conda/" style="font-size: 10px;">conda</a> <a href="/tags/data-analysis/" style="font-size: 20px;">data_analysis</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/matplotlib/" style="font-size: 10px;">matplotlib</a> <a href="/tags/ollama/" style="font-size: 10px;">ollama</a> <a href="/tags/pandas/" style="font-size: 17.5px;">pandas</a> <a href="/tags/plot/" style="font-size: 10px;">plot</a> <a href="/tags/powerbi/" style="font-size: 12.5px;">powerbi</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/12/07/powerbi-notes-p4/">PowerBI - Notes - Part 4 - CSV Loading Issue Create Extra Rows</a>
+          </li>
+        
+          <li>
+            <a href="/2024/10/16/powerbi-notes-p3/">PowerBI - Notes - Part 3 - DAX Code</a>
+          </li>
+        
+          <li>
+            <a href="/2024/10/06/powerbi-notes-p2/">PowerBI - Notes - Part 2 - Filter Context &amp; Flow</a>
+          </li>
+        
+          <li>
+            <a href="/2024/09/29/powerbi-notes-p1/">PowerBI - Notes - Part 1</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/16/time-series-analysis-seasonal-pattern/">Data Reveals - Seasonal Patterns in the Equity Market - Is the ‘Sell in May and Go Away, Come Back in September’ Strategy Reliable?</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 K.Z.<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

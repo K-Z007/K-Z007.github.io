@@ -71,6 +71,67 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-powerbi-notes-p4" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/12/07/powerbi-notes-p4/" class="article-date">
+  <time class="dt-published" datetime="2024-12-07T04:09:50.000Z" itemprop="datePublished">2024-12-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/12/07/powerbi-notes-p4/">PowerBI - Notes - Part 4 - CSV Loading Issue Create Extra Rows</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <br />
+
+<h2>How to Fix the Issue of Extra Rows of Bad Data being created When Loading a Folder of CSV Files into Power BI:</h2>
+
+<p>Recently, I encountered an issue while working on a data project that involved loading millions of rows of data from a folder of CSV files into Power BI. During the process, I noticed that <b>extra rows, which did not exist in the original files</b>, were being generated. Here are the details (this is a demo project, and all sensitive information has been removed for confidentiality):</p>
+<h4>Testing with a Single CSV File</h4>
+
+<p>To troubleshoot and demonstrate the issue quickly, I started by testing with a single CSV file. Upon loading this file into Power BI, I noticed an error in the “Creation_date” column. The error affected less than 1% of the rows, showing an “Error” message in that column.</p>
+<p>Initially, I assumed it was a common issue with formatting datetime values in Power BI. To resolve it, I attempted the three standard methods for converting the column to a datetime format. However, the error persisted despite these efforts.</p>
+<br />
+
+<p><img src="/2024/12/07/powerbi-notes-p4/p1.jpg"></p>
+<br />
+Then, I filtered the column to display only the rows with "Error," but this didn't provide much insight into the root cause of the issue.
+<br />
+
+<p><img src="/2024/12/07/powerbi-notes-p4/p2.jpg"></p>
+        
+          <p class="article-more-link">
+            <a href="/2024/12/07/powerbi-notes-p4/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://k-z007.github.io/2024/12/07/powerbi-notes-p4/" data-id="cm4dprg2h000opsjf2rtqe5us" data-title="PowerBI - Notes - Part 4 - CSV Loading Issue Create Extra Rows" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/powerbi/" rel="tag">powerbi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-powerbi-notes-p3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/10/16/powerbi-notes-p3/" class="article-date">
@@ -121,7 +182,7 @@ DAX, or Data Analysis Expressions, is a collection of functions, operators, and 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/10/16/powerbi-notes-p3/" data-id="cm2hhxlov000m8ojf0btw0ea2" data-title="PowerBI - Notes - Part 3 - DAX Code" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/10/16/powerbi-notes-p3/" data-id="cm4dprg2f000jpsjf3ab99kc4" data-title="PowerBI - Notes - Part 3 - DAX Code" class="article-share-link">Share</a>
       
       
       
@@ -178,7 +239,7 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/10/06/powerbi-notes-p2/" data-id="cm2hhxlou000j8ojffvntdp6i" data-title="PowerBI - Notes - Part 2 - Filter Context &amp; Flow" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/10/06/powerbi-notes-p2/" data-id="cm4dprg2g000mpsjfee4hcgg2" data-title="PowerBI - Notes - Part 2 - Filter Context &amp; Flow" class="article-share-link">Share</a>
       
       
       
@@ -233,7 +294,7 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/09/29/powerbi-notes-p1/" data-id="cm2hhxlos000h8ojfapfkb31y" data-title="PowerBI - Notes - Part 1" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/09/29/powerbi-notes-p1/" data-id="cm4dprg2c000hpsjf4grj7cb1" data-title="PowerBI - Notes - Part 1" class="article-share-link">Share</a>
       
       
       
@@ -283,7 +344,7 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/06/16/time-series-analysis-seasonal-pattern/" data-id="cm2hhxlp0000v8ojfdob1cp81" data-title="Data Reveals - Seasonal Patterns in the Equity Market - Is the ‘Sell in May and Go Away, Come Back in September’ Strategy Reliable?" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/06/16/time-series-analysis-seasonal-pattern/" data-id="cm4dprg2k000vpsjf3xgg34ug" data-title="Data Reveals - Seasonal Patterns in the Equity Market - Is the ‘Sell in May and Go Away, Come Back in September’ Strategy Reliable?" class="article-share-link">Share</a>
       
       
       
@@ -338,7 +399,7 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/06/02/python-pandas-vs-powerbi/" data-id="cm2hhxlox000q8ojfe9evgeio" data-title="Python &amp; Pandas VS Power BI for Data Cleaning" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/06/02/python-pandas-vs-powerbi/" data-id="cm4dprg2i000qpsjf2roa1cgz" data-title="Python &amp; Pandas VS Power BI for Data Cleaning" class="article-share-link">Share</a>
       
       
       
@@ -384,7 +445,7 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/05/04/monte-carlo-stock-portfolio/" data-id="cm2hhxlom00088ojfgoihd2kc" data-title="Monte Carlo Simulation using Python" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/05/04/monte-carlo-stock-portfolio/" data-id="cm4dprg270008psjfc1yl5al5" data-title="Monte Carlo Simulation using Python" class="article-share-link">Share</a>
       
       
       
@@ -430,7 +491,7 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/04/21/data-analysis-ivv/" data-id="cm2hhxloc00018ojf1wkxe9zi" data-title="Time Series Analysis For IVV.US" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/04/21/data-analysis-ivv/" data-id="cm4dprg1y0001psjfgdhl82pp" data-title="Time Series Analysis For IVV.US" class="article-share-link">Share</a>
       
       
       
@@ -477,7 +538,7 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/04/01/local-private-AI/" data-id="cm2hhxlog00038ojfgreoc62v" data-title="Your Local Private AI Assistant" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/04/01/local-private-AI/" data-id="cm4dprg220003psjf8ksr3zb1" data-title="Your Local Private AI Assistant" class="article-share-link">Share</a>
       
       
       
@@ -524,64 +585,11 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/02/18/springboot-jpa-jdbc/" data-id="cm2hhxloz000t8ojfc6re305y" data-title="Spring Framework - JPA, Hibernate and JDBC" class="article-share-link">Share</a>
+      <a data-url="https://k-z007.github.io/2024/02/18/springboot-jpa-jdbc/" data-id="cm4dprg2l000ypsjfbn6hbf8o" data-title="Spring Framework - JPA, Hibernate and JDBC" class="article-share-link">Share</a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jpa/" rel="tag">jpa</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-minconda-condavenv" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/01/28/minconda-condavenv/" class="article-date">
-  <time class="dt-published" datetime="2024-01-28T03:01:08.000Z" itemprop="datePublished">2024-01-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/01/28/minconda-condavenv/">Miniconda and Conda Virtual Environment</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>This post covers miniconda, including its installation and managing conda virtual environments. After using the Anaconda suite for quite some time, I found it cumbersome, with many unused tools, a large number of default packages, and a substantial volume size. Consequently, I decided to uninstall Anaconda and switch to the more lightweight miniconda distribution.</p>
-<p>For miniconda installation link:  <a target="_blank" rel="noopener" href="https://docs.anaconda.com/free/miniconda/miniconda-install/">miniconda</a>.</p>
-<h3>Creating and Managing Virtual Environment</h3>
-
-
-<p><span class="large-text">1. Open Anaconda Terminal</span><br><span class="large-text">2. Create new virtual environment and install specific python verison<br>into this virtual environment</span></p>
-<p><img src="/2024/01/28/minconda-condavenv/conda_1.JPG"></p>
-<p><span class="large-text">3. Typing “conda env list” to check the virtual environments just created</span></p>
-<p><img src="/2024/01/28/minconda-condavenv/conda_2.JPG"></p>
-        
-          <p class="article-more-link">
-            <a href="/2024/01/28/minconda-condavenv/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://k-z007.github.io/2024/01/28/minconda-condavenv/" data-id="cm2hhxlol00078ojf0boo2fe9" data-title="Miniconda and Conda Virtual Environment" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/conda/" rel="tag">conda</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-analysis/" rel="tag">data_analysis</a></li></ul>
 
     </footer>
   </div>
@@ -628,7 +636,7 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li></ul>
     </div>
   </div>
 
@@ -639,6 +647,10 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/12/07/powerbi-notes-p4/">PowerBI - Notes - Part 4 - CSV Loading Issue Create Extra Rows</a>
+          </li>
         
           <li>
             <a href="/2024/10/16/powerbi-notes-p3/">PowerBI - Notes - Part 3 - DAX Code</a>
@@ -654,10 +666,6 @@ any related &quot;downstream&quot; tables, following the arrow&#39;s direction.
         
           <li>
             <a href="/2024/06/16/time-series-analysis-seasonal-pattern/">Data Reveals - Seasonal Patterns in the Equity Market - Is the ‘Sell in May and Go Away, Come Back in September’ Strategy Reliable?</a>
-          </li>
-        
-          <li>
-            <a href="/2024/06/02/python-pandas-vs-powerbi/">Python &amp; Pandas VS Power BI for Data Cleaning</a>
           </li>
         
       </ul>
